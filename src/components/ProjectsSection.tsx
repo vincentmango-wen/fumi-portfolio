@@ -41,33 +41,50 @@ export function ProjectsSection({ content }: Props) {
         {content.projects.map((project, i) => (
           <li key={i} className="group">
             {/*
-             * プレースホルダ画像エリア
-             * FP-005 で secretary-bot スクリーンショットに差し替え予定
-             * 現在はすべて「準備中」プレースホルダ
+             * 画像エリア
+             * imageUrl があれば実画像、なければ「準備中」プレースホルダ
              */}
-            <div
-              className="mb-6 flex items-center justify-center rounded"
-              aria-hidden="true"
-              style={{
-                aspectRatio: "16/9",
-                backgroundColor: "var(--color-surface-raised)",
-                borderRadius: "var(--radius-md)",
-                boxShadow: "var(--shadow-card)",
-                transition: "opacity 0.2s ease, transform 0.2s ease",
-              }}
-            >
-              {/* プレースホルダテキスト */}
-              <span
-                className="text-(--color-text-muted) select-none"
+            {project.imageUrl ? (
+              <div
+                className="mb-6 flex items-center justify-center overflow-hidden"
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "var(--text-sm)",
-                  letterSpacing: "0.05em",
+                  aspectRatio: "16/9",
+                  backgroundColor: "var(--color-surface-raised)",
+                  borderRadius: "var(--radius-md)",
+                  boxShadow: "var(--shadow-card)",
                 }}
               >
-                {content.projectPlaceholderLabel}
-              </span>
-            </div>
+                <img
+                  src={project.imageUrl}
+                  alt={project.imageAlt ?? ""}
+                  className="max-w-full max-h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div
+                className="mb-6 flex items-center justify-center rounded"
+                aria-hidden="true"
+                style={{
+                  aspectRatio: "16/9",
+                  backgroundColor: "var(--color-surface-raised)",
+                  borderRadius: "var(--radius-md)",
+                  boxShadow: "var(--shadow-card)",
+                  transition: "opacity 0.2s ease, transform 0.2s ease",
+                }}
+              >
+                <span
+                  className="text-(--color-text-muted) select-none"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "var(--text-sm)",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  {content.projectPlaceholderLabel}
+                </span>
+              </div>
+            )}
 
             {/* Project meta */}
             <div className="flex items-start justify-between gap-4">

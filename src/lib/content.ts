@@ -34,6 +34,8 @@ export type ProjectCard = {
   statusLabel: string;     // "Running" | "Released" | "In Dev"（英語統一）
   description: string;
   stack: string[];
+  imageUrl?: string;       // public/ 以下のパス。未指定なら「準備中」プレースホルダ
+  imageAlt?: string;       // imageUrl 指定時に必須（locale ごとに記述）
 };
 
 // ============================================================
@@ -214,6 +216,8 @@ export const CONTENT = {
         description:
           "Notion + Slack + LINE 統合の個人秘書ボット。タスク管理と日次サマリを自動化。",
         stack: ["TypeScript", "Deno", "Notion API"],
+        imageUrl: "/projects/secretary-bot-demo.png",
+        imageAlt: "secretary-bot のダイジェスト配信例（架空タスクで再現）",
       },
       {
         name: "Recipe Generator",
@@ -327,6 +331,8 @@ export const CONTENT = {
         description:
           "整合 Notion + Slack + LINE 的個人秘書機器人，自動化任務管理與每日摘要。",
         stack: ["TypeScript", "Deno", "Notion API"],
+        imageUrl: "/projects/secretary-bot-demo.png",
+        imageAlt: "secretary-bot 每日摘要推送範例（以虛構任務重現）",
       },
       {
         name: "Recipe Generator",
