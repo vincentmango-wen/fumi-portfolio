@@ -1,0 +1,22 @@
+{
+  "name": "阮念文 / Fumi — Portfolio",
+  "short_name": "Fumi",
+  "description": "Bilingual IT engineer & SaaS developer portfolio",
+  "start_url": "/ja",
+  "display": "standalone",
+  "background_color": "#1a1814",
+  "theme_color": "#1a1814",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "180x180"
+    }
+  ]
+}
