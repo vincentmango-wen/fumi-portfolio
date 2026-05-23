@@ -226,6 +226,8 @@ export const CONTENT = {
         description:
           "冷蔵庫の食材から AI がレシピを提案。飲食業での経験と生成 AI を掛け合わせたプロダクト。",
         stack: ["Next.js", "TypeScript", "Claude API", "Supabase"],
+        imageUrl: "/projects/recipe-generator.png",
+        imageAlt: "Recipe Generator のトップ画面。冷蔵庫の食材写真からレシピを生成する 3 ステップ UI",
       },
       {
         name: "DAINews",
@@ -234,6 +236,8 @@ export const CONTENT = {
         description:
           "AI ニュース日次配信 SaaS。個人向けの情報過多解消を目的に開発中。",
         stack: ["Next.js", "Claude API", "Resend"],
+        imageUrl: "/projects/dainews.png",
+        imageAlt: "DAINews 朝刊メールの配信プレビュー（開発中のモック表示）",
       },
     ],
     projectPlaceholderLabel: "準備中",
@@ -341,6 +345,8 @@ export const CONTENT = {
         description:
           "依冰箱食材由 AI 推薦食譜。結合餐飲業經驗與生成式 AI 的個人作品。",
         stack: ["Next.js", "TypeScript", "Claude API", "Supabase"],
+        imageUrl: "/projects/recipe-generator.png",
+        imageAlt: "Recipe Generator 首頁。從冰箱食材生成食譜的三步驟介面",
       },
       {
         name: "DAINews",
@@ -349,6 +355,8 @@ export const CONTENT = {
         description:
           "AI 新聞日報 SaaS，為個人使用者解決資訊過載問題，開發中。",
         stack: ["Next.js", "Claude API", "Resend"],
+        imageUrl: "/projects/dainews.png",
+        imageAlt: "DAINews 早報郵件配信預覽（開發中模擬畫面）",
       },
     ],
     projectPlaceholderLabel: "準備中",

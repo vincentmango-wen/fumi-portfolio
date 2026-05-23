@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>DAINews — メール配信プレビュー（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper:  oklch(0.96 0.02 85);
+  --paper2: oklch(0.94 0.025 82);
+  --ink:    oklch(0.15 0.04 45);
+  --ink2:   oklch(0.13 0.04 45);
+  --sub:    oklch(0.42 0.04 45);
+  --muted:  oklch(0.60 0.02 45);
+  --accent: oklch(0.50 0.20 22);
+  --border: oklch(0.84 0.02 85);
+  --card-bg: oklch(0.98 0.012 88);
+  --serif-jp: 'Noto Serif JP', Georgia, serif;
+  --sans-jp:  'Noto Sans JP', system-ui, sans-serif;
+  --mono:     'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1280px; height: 920px; overflow: hidden; }
+body {
+  font-family: var(--sans-jp);
+  background: var(--paper2);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 32px;
+}
+body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 900px 500px at 85% 110%, oklch(0.92 0.03 82) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 400px at 5% -10%, oklch(0.98 0.015 88) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.window {
+  position: relative;
+  width: 1216px; height: 856px;
+  background: var(--paper);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 oklch(1 0 0 / 0.6) inset, 0 24px 60px -20px oklch(0.15 0.04 45 / 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.titlebar {
+  height: 36px;
+  background: oklch(0.93 0.018 82);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  flex: 0 0 36px;
+}
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.dot-r { background: oklch(0.72 0.16 25); }
+.dot-y { background: oklch(0.84 0.14 75); }
+.dot-g { background: oklch(0.74 0.16 145); }
+.titlebar .url {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 24px;
+  letter-spacing: 0.04em;
+}
+
+.mailhead {
+  padding: 22px 56px 18px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 16px;
+  align-items: end;
+}
+.brand {
+  display: flex; align-items: baseline; gap: 12px;
+}
+.brand .logo {
+  font-family: var(--serif-jp);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--ink2);
+  letter-spacing: 0.02em;
+}
+.brand .tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+}
+.subject {
+  grid-column: 1 / -1;
+  font-family: var(--serif-jp);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.meta {
+  display: flex; gap: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  grid-column: 1 / -1;
+  margin-top: 2px;
+}
+.meta b { color: var(--ink2); font-weight: 500; }
+.meta .sep { color: var(--border); }
+
+.body {
+  flex: 1 1 auto;
+  padding: 24px 56px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 4px; height: 56px;
+  background: var(--accent);
+  opacity: 0.7;
+  border-radius: 8px 0 0 0;
+}
+
+.cat {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cat .num {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.headline {
+  font-family: var(--serif-jp);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink2);
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+
+.summary {
+  font-family: var(--sans-jp);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--sub);
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+.source {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+}
+.source .out { color: var(--ink2); }
+
+.foot {
+  flex: 0 0 auto;
+  padding: 14px 56px 18px;
+  border-top: 1px solid var(--border);
+  background: oklch(0.95 0.018 82);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.foot b { color: var(--ink2); font-weight: 500; }
+.foot a { color: var(--muted); text-decoration: none; }
+.foot .sep { color: var(--border); margin: 0 10px; }
+
+
+.insight {
+  margin: 0 56px 24px;
+  padding: 22px 26px 22px 22px;
+  background: oklch(0.50 0.20 22 / 0.05);
+  border: 1px solid oklch(0.50 0.20 22 / 0.25);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  align-items: start;
+  position: relative;
+}
+.insight::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: -1px;
+  width: 4px; height: 100%;
+  background: var(--accent);
+  border-radius: 8px 0 0 8px;
+}
+.insight-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid oklch(0.50 0.20 22 / 0.35);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.insight-avatar img { width: 86%; height: 86%; object-fit: contain; }
+.insight-body { display: flex; flex-direction: column; gap: 8px; }
+.insight-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+}
+.insight-label .by {
+  font-family: var(--sans-jp);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-size: 11px;
+}
+.insight-text {
+  font-family: var(--serif-jp);
+  font-weight: 500;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.insight-text em {
+  font-style: normal;
+  background: linear-gradient(transparent 60%, oklch(0.84 0.14 75 / 0.55) 60%);
+  padding: 0 2px;
+}
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="titlebar">
+    <span class="dot dot-r"></span>
+    <span class="dot dot-y"></span>
+    <span class="dot dot-g"></span>
+    <span class="url">https://dainews.example/mail/preview</span>
+  </div>
+
+  <div class="mailhead">
+    <div class="brand">
+      <div class="logo">DAINews</div>
+      <div class="tag">Daily AI News · 2026/05/24 朝刊</div>
+    </div>
+    <div class="subject">今朝のニュース 3 本</div>
+    <div class="meta">
+      <span>TO <b>reader@example.com</b></span>
+      <span class="sep">|</span>
+      <span>FROM <b>news@dainews.example</b></span>
+      <span class="sep">|</span>
+      <span>05:30 JST 配信</span>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="card">
+      <div class="cat"><span>💰 Money</span><span class="num">01 / 03</span></div>
+      <div class="headline">金融大手の AI 投資、四半期で 1.4 倍に拡大</div>
+      <div class="summary">
+        生成 AI 関連の社内システム開発が業績連動指標に組み込まれた事例が複数報告されました。中堅以下の企業では、外部 SaaS 利用比率が上昇する一方、人材獲得競争の激化が課題に。
+      </div>
+      <div class="source">
+        <span class="out">industry report</span>
+        <span>3 sources</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cat"><span>🤖 AI Tech</span><span class="num">02 / 03</span></div>
+      <div class="headline">推論コスト 30% 削減を実現する新型モデル、研究機関が公開</div>
+      <div class="summary">
+        スパース MoE と量子化を組み合わせた新モデルが、同等タスクで GPU 使用量を 30% 削減。オープンソース公開で、個人開発者や中小規模の SaaS 運営にも導入の選択肢が広がります。
+      </div>
+      <div class="source">
+        <span class="out">preprint</span>
+        <span>1 source</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cat"><span>📚 Liberal Arts</span><span class="num">03 / 03</span></div>
+      <div class="headline">読み書きの「速度」をめぐる、教育現場の新しい議論</div>
+      <div class="summary">
+        生成 AI で要約・翻訳が即時に得られる時代に、何を残し、何を手放すか。教育研究の領域で「ゆっくり読む」価値を再評価する論考が増えています。働き方にも示唆を与える視点です。
+      </div>
+      <div class="source">
+        <span class="out">essay</span>
+        <span>2 sources</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-avatar"><img src="dai-kun.png" alt="" /></div>
+    <div class="insight-body">
+      <div class="insight-label">
+        <span>★ あなたへの示唆</span>
+        <span class="by">by DAI（あなた専属の AI 編集者）</span>
+      </div>
+      <div class="insight-text">
+        今朝のテーマは <em>「AI が前提化する時代に、人間側で何を残すか」</em>。AI Tech のコスト削減で個人開発のハードルが下がる一方、Liberal Arts の「ゆっくり読む」議論は<em>判断の質</em>に重心を戻そうとしています。今日は <em>「自分の手で書く時間」</em> を 30 分だけ確保するのが良さそうです。
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><b>DAINews</b> · 平日朝 5:30 配信 · 開発中（mock preview）</span>
+    <span>
+      <a href="#">配信設定</a><span class="sep">·</span>
+      <a href="#">配信停止</a><span class="sep">·</span>
+      <a href="#">ヘルプ</a>
+    </span>
+  </div>
+</div>
+</body>
+</html>

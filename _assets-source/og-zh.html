@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<title>阮念文 / Fumi — OGP /zh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Serif+JP:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper:  oklch(0.96 0.02 85);
+  --paper2: oklch(0.94 0.025 82);
+  --ink:    oklch(0.15 0.04 45);
+  --ink2:   oklch(0.13 0.04 45);
+  --sub:    oklch(0.42 0.04 45);
+  --muted:  oklch(0.60 0.02 45);
+  --accent: oklch(0.50 0.20 22);
+  --border: oklch(0.84 0.02 85);
+  --serif-tc: 'Noto Serif TC', 'Noto Serif JP', Georgia, serif;
+  --serif-jp: 'Noto Serif JP', Georgia, serif;
+  --sans-tc:  'Noto Sans TC', system-ui, sans-serif;
+  --mono:     'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  font-family: var(--sans-tc);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 800px 400px at 80% 110%, oklch(0.92 0.03 82) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 300px at 10% -10%, oklch(0.98 0.015 88) 0%, transparent 60%);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 3px, oklch(0.13 0.04 45 / 0.012) 3px 4px),
+    repeating-linear-gradient(-45deg, transparent 0 3px, oklch(0.13 0.04 45 / 0.012) 3px 4px);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.inner {
+  position: relative; z-index: 2;
+  width: 100%; height: 100%;
+  padding: 72px 88px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.corner-tl, .corner-br {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  z-index: 3;
+  white-space: nowrap;
+}
+.brand-mini { white-space: nowrap; flex: 0 0 auto; min-width: 240px; }
+.corner-tl { top: 28px; left: 36px; width: 240px; }
+.corner-br { bottom: 28px; right: 36px; width: 240px; text-align: right; }
+
+.top-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.brand-mini {
+  font-family: var(--serif-tc);
+  font-weight: 500; font-size: 18px;
+  color: var(--sub); letter-spacing: 0.04em;
+}
+.brand-mini .sep { color: var(--accent); margin: 0 10px; }
+.seal {
+  width: 64px; height: 64px;
+  border: 2.5px solid var(--accent);
+  border-radius: 4px;
+  display: grid; place-items: center;
+  transform: rotate(-3deg);
+  background: oklch(0.50 0.20 22 / 0.04);
+  color: var(--accent);
+}
+.seal svg { width: 0.95em; height: 0.95em; font-size: 38px; }
+
+.name-block { margin-top: -4px; }
+.name {
+  font-family: var(--serif-tc);
+  font-weight: 700;
+  font-size: 144px;
+  line-height: 1;
+  color: var(--ink2);
+  letter-spacing: 0.04em;
+}
+.underline {
+  width: 120px; height: 3px;
+  background: var(--accent);
+  margin-top: 22px;
+}
+.subtitle {
+  font-family: var(--sans-tc);
+  font-weight: 400; font-size: 24px;
+  color: var(--sub);
+  letter-spacing: 0.08em;
+  margin-top: 16px;
+}
+.subtitle .sep { color: var(--accent); margin: 0 12px; }
+.ja-name {
+  font-family: var(--serif-jp);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  margin-top: 14px;
+}
+.bottom-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.url {
+  font-family: var(--mono);
+  font-size: 14px; color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.url b { color: var(--ink2); font-weight: 500; }
+.tagline {
+  font-family: var(--serif-tc);
+  font-weight: 400; font-size: 20px;
+  color: var(--ink);
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<span class="corner-tl">FP — 阮念文</span>
+<span class="corner-br">— 2026 —</span>
+<div class="inner">
+  <div class="top-row">
+    <div class="brand-mini">阮念文<span class="sep">/</span>Fumi</div>
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 100 100" aria-label="阮念文 mark"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="55" cy="10" r="6" fill="currentColor" stroke="none"/><path d="M 51 19 Q 54 26 57 33" stroke-width="5.5"/><path d="M 19 41 Q 50 36 86 35" stroke-width="7"/><path d="M 58 48 Q 42 65 17 84" stroke-width="8.5"/><path d="M 46 48 Q 64 65 87 82" stroke-width="8.5"/></g></svg>
+    </div>
+  </div>
+
+  <div class="name-block">
+    <div class="name" lang="zh-TW">阮念文</div>
+    <div class="underline"></div>
+    <div class="subtitle" lang="zh-TW">IT 工程師<span class="sep">/</span>SaaS 開發者</div>
+    <div class="ja-name">ふみ</div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="url">fumi.vercel.app<b>/zh</b></div>
+    <div class="tagline" lang="zh-TW">將使用者的聲音，連結成穩定的系統。</div>
+  </div>
+</div>
+</body>
+</html>
