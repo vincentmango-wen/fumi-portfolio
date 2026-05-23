@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* === FP-002 案 C: Bilingual Calligraphy === */
+  /* --- Surface (light) --- */
+  --color-surface: oklch(0.96 0.02 85);
+  --color-surface-raised: oklch(0.92 0.02 85);
+  --color-ink: oklch(0.13 0.04 45);
+
+  /* --- Text (light) --- */
+  --color-text-primary: oklch(0.15 0.04 45);
+  --color-text-secondary: oklch(0.42 0.04 45);
+  --color-text-muted: oklch(0.60 0.02 45);
+
+  /* --- Accent (Vermillion / 朱) --- */
+  --color-accent: oklch(0.50 0.20 22);
+  --color-accent-subtle: oklch(0.93 0.06 22);
+  --color-accent-fg: oklch(0.96 0.02 85);
+
+  /* --- Border --- */
+  --color-border: oklch(0.84 0.02 85);
+  --color-border-strong: oklch(0.68 0.03 45);
+
+  /* --- Font families --- */
+  --font-serif: var(--font-noto-serif-jp), var(--font-noto-serif-tc), Georgia, serif;
+  --font-sans: var(--font-noto-sans-jp), var(--font-noto-sans-tc), system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* --- Type scale (modular 1.25x) --- */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5625rem;
+  --text-2xl:  1.953rem;
+  --text-3xl:  2.441rem;
+  --text-4xl:  3.052rem;
+  --text-5xl:  3.815rem;
+  --text-6xl:  4.768rem;
+
+  /* --- Spacing --- */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  --space-20: 160px;
+
+  /* --- Radius --- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* --- Shadow --- */
+  --shadow-card: 0 1px 3px oklch(0.13 0.04 45 / 0.10);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --- Dark mode overrides ---
+ * Placed in @layer base so Tailwind v4 doesn't fold these into the
+ * @theme layer (which would strip the @media wrapper and apply dark
+ * values unconditionally). */
+@layer base {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-surface: oklch(0.13 0.04 45);
+      --color-surface-raised: oklch(0.18 0.04 45);
+      --color-ink: oklch(0.94 0.02 85);
+      --color-text-primary: oklch(0.94 0.02 85);
+      --color-text-secondary: oklch(0.68 0.03 85);
+      --color-text-muted: oklch(0.50 0.02 45);
+      --color-accent: oklch(0.62 0.18 22);
+      --color-accent-subtle: oklch(0.22 0.08 22);
+      --color-accent-fg: oklch(0.13 0.04 45);
+      --color-border: oklch(0.25 0.03 45);
+      --color-border-strong: oklch(0.38 0.04 45);
+    }
   }
 }
 
+html {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: "halt";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* CJK 行送り: 中文は字形が複雑なため余裕をとる */
+[lang="zh-TW"] p,
+[lang="zh-Hant"] p {
+  line-height: 1.90;
+}
+
+[lang="ja"] p {
+  line-height: 1.80;
+}
+
+/* focus-visible 全 interactive 要素共通 */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* prefers-reduced-motion: アニメーション抑制 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

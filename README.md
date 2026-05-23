@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fumi-portfolio
 
-## Getting Started
+阮念文 / Fumi の二言語（日本語 / 繁體中文）個人ポートフォリオサイト。
 
-First, run the development server:
+- **公開先**: https://fumi-wen.vercel.app（Vercel）
+- **デザイン**: 案 C「Bilingual Calligraphy」（FP-002 採択）
+- **スタック**: Next.js 15 (App Router) + Tailwind v4 + TypeScript
+- **i18n ルーティング**: `/ja` / `/zh-TW`（ルートは `/ja` にリダイレクト）
+
+## 開発
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build
+npm start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 構造
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── globals.css            # 案 C @theme（oklch トークン / CJK 行送り）
+│   ├── layout.tsx             # passthrough（[lang]/layout.tsx に責務委譲）
+│   ├── page.tsx               # / → /ja redirect
+│   └── [lang]/
+│       ├── layout.tsx         # html lang / metadata / Noto fonts
+│       └── page.tsx           # ランディング（FP-004 で各セクション拡張）
+└── lib/
+    └── i18n.ts                # LOCALES / SITE_URL
+public/
+├── favicon.svg / -light / -accent
+├── apple-touch-icon.svg
+├── mark.svg
+├── fumi-portrait.png
+└── site.webmanifest
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## チケット
 
-## Learn More
+- 親: `.company/engineering/tickets/2026-05-23-fp-001-fumi-portfolio-requirements.md`
+- デザイン採択: `.company/engineering/designs/2026-05-23-fp-002-recommendation.md`
+- 初期 scaffold: `.company/engineering/tickets/2026-05-23-fp-003-repo-and-scaffold.md`
 
-To learn more about Next.js, take a look at the following resources:
+## 制約
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 公開先 URL は履歴書 / Notion ポートフォリオから踏まれる前提
+- AWS 証照は「2026 年内取得予定」表記のみ（時期を特定する語句は入れない）
+- Philosophy セクションで国・国籍に直接触れない
