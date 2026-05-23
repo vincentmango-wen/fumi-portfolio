@@ -1,0 +1,154 @@
+import type { SiteContent } from "@/lib/content";
+
+type Props = {
+  content: Pick<
+    SiteContent,
+    "sectionProjectsHeading" | "projects" | "projectPlaceholderLabel"
+  >;
+};
+
+export function ProjectsSection({ content }: Props) {
+  return (
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="mx-auto max-w-4xl px-6 sm:px-10 md:px-16 lg:px-0"
+      style={{ paddingTop: "var(--space-20)", paddingBottom: "var(--space-20)" }}
+    >
+      {/* Section heading */}
+      <div className="mb-12 flex items-center gap-4">
+        <h2
+          id="projects-heading"
+          className="font-serif text-(--color-ink) shrink-0"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "var(--text-2xl)",
+            fontWeight: 600,
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {content.sectionProjectsHeading}
+        </h2>
+        <hr
+          aria-hidden="true"
+          className="flex-1 border-0 border-t border-(--color-border)"
+        />
+      </div>
+
+      {/* Project cards — vertical stack */}
+      <ul className="space-y-16">
+        {content.projects.map((project, i) => (
+          <li key={i} className="group">
+            {/*
+             * プレースホルダ画像エリア
+             * FP-005 で secretary-bot スクリーンショットに差し替え予定
+             * 現在はすべて「準備中」プレースホルダ
+             */}
+            <div
+              className="mb-6 flex items-center justify-center rounded"
+              aria-hidden="true"
+              style={{
+                aspectRatio: "16/9",
+                backgroundColor: "var(--color-surface-raised)",
+                borderRadius: "var(--radius-md)",
+                boxShadow: "var(--shadow-card)",
+                transition: "opacity 0.2s ease, transform 0.2s ease",
+              }}
+            >
+              {/* プレースホルダテキスト */}
+              <span
+                className="text-(--color-text-muted) select-none"
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "var(--text-sm)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {content.projectPlaceholderLabel}
+              </span>
+            </div>
+
+            {/* Project meta */}
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <h3
+                  className="font-serif text-(--color-ink)"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "var(--text-xl)",
+                    fontWeight: 600,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {project.name}
+                </h3>
+
+                <p
+                  className="mt-2 text-(--color-text-secondary)"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "var(--text-base)",
+                    lineHeight: 1.8,
+                  }}
+                >
+                  {project.description}
+                </p>
+
+                <p
+                  className="mt-3 font-mono text-(--color-text-muted)"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "var(--text-sm)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {project.stack.join(" · ")}
+                </p>
+              </div>
+
+              {/* Status badge */}
+              <div
+                className="shrink-0 flex items-center gap-1"
+                style={{ paddingTop: "2px" }}
+              >
+                <span
+                  aria-hidden="true"
+                  style={{
+                    color:
+                      project.statusIcon === "●"
+                        ? "var(--color-accent)"
+                        : project.statusIcon === "▲"
+                        ? "var(--color-text-secondary)"
+                        : "var(--color-text-muted)",
+                    fontSize: "var(--text-xs)",
+                  }}
+                >
+                  {project.statusIcon}
+                </span>
+                <span
+                  className="text-(--color-text-muted)"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "var(--text-xs)",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  {project.statusLabel}
+                </span>
+              </div>
+            </div>
+
+            {/* Card separator */}
+            {i < content.projects.length - 1 && (
+              <hr
+                className="mt-12 border-0 border-t border-(--color-border)"
+                aria-hidden="true"
+              />
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
