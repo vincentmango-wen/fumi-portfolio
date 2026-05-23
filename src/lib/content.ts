@@ -60,6 +60,7 @@ export type SiteContent = {
   taglineAlt: string;             // aria-hidden, different language
   ctaPrimary: string;
   ctaSecondary: string;
+  portraitAlt: string;            // Hero portrait の alt（言語別）
 
   // About
   sectionAboutHeading: string;
@@ -160,6 +161,7 @@ export const CONTENT = {
     taglineAlt: "將使用者的聲音，連結成穩定運作的系統。",
     ctaPrimary: "プロジェクトを見る",
     ctaSecondary: "連絡する →",
+    portraitAlt: "阮念文 / ふみ のプロフィール写真",
 
     // ---- About ----
     sectionAboutHeading: "About",
@@ -278,6 +280,7 @@ export const CONTENT = {
     taglineAlt: "現場の声を、安定したシステムにつなぐ。",
     ctaPrimary: "查看作品集",
     ctaSecondary: "聯絡 →",
+    portraitAlt: "阮念文 / ふみ 的個人照片",
 
     // ---- About ----
     sectionAboutHeading: "About",
