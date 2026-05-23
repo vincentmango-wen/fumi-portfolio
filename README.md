@@ -2,7 +2,7 @@
 
 阮念文 / Fumi の二言語（日本語 / 繁體中文）個人ポートフォリオサイト。
 
-- **公開先**: https://fumi.vercel.app（Vercel）
+- **公開先**: https://fumi-wen.vercel.app（Vercel）
 - **デザイン**: 案 C「Bilingual Calligraphy」（FP-002 採択）
 - **スタック**: Next.js 15 (App Router) + Tailwind v4 + TypeScript
 - **i18n ルーティング**: `/ja` / `/zh-TW`（ルートは `/ja` にリダイレクト）
