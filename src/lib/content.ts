@@ -73,11 +73,14 @@ export type SiteContent = {
   sectionSkillsHeading: string;
   skillGroups: { heading: string; items: string[] }[];
   certsHeading: string;           // "証照 / 證照" 並走見出し
+  certObtainedLabel: string;      // 証照ステータスバッジの aria-label（locale 連動）
+  certPlannedLabel: string;       // 同上
 
   // Projects
   sectionProjectsHeading: string;
   projects: ProjectCard[];
   projectPlaceholderLabel: string; // "準備中 / 準備中"
+  projectDeliveryLanguagesLabel: string; // Projects カードの配信言語タグ aria-label（locale 連動）
 
   // Philosophy
   sectionPhilosophyHeading: string; // aria 用（非表示）
@@ -200,6 +203,8 @@ export const CONTENT = {
       },
     ],
     certsHeading: "証照 / 證照",
+    certObtainedLabel: "取得済",
+    certPlannedLabel: "取得予定",
 
     // ---- Projects ----
     sectionProjectsHeading: "Projects / 作品集",
@@ -239,6 +244,7 @@ export const CONTENT = {
       },
     ],
     projectPlaceholderLabel: "準備中",
+    projectDeliveryLanguagesLabel: "配信言語",
 
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT & AI Philosophy",
@@ -307,6 +313,8 @@ export const CONTENT = {
       },
     ],
     certsHeading: "證照 / 証照",
+    certObtainedLabel: "已取得",
+    certPlannedLabel: "預計取得",
 
     // ---- Projects ----
     sectionProjectsHeading: "作品集 / Projects",
@@ -346,6 +354,7 @@ export const CONTENT = {
       },
     ],
     projectPlaceholderLabel: "準備中",
+    projectDeliveryLanguagesLabel: "提供語言",
 
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT 與 AI 的思考方式",

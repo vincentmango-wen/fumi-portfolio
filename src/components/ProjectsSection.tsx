@@ -3,7 +3,10 @@ import type { SiteContent } from "@/lib/content";
 type Props = {
   content: Pick<
     SiteContent,
-    "sectionProjectsHeading" | "projects" | "projectPlaceholderLabel"
+    "sectionProjectsHeading"
+    | "projects"
+    | "projectPlaceholderLabel"
+    | "projectDeliveryLanguagesLabel"
   >;
 };
 
@@ -125,7 +128,7 @@ export function ProjectsSection({ content }: Props) {
 
                 <ul
                   className="mt-4 flex flex-wrap gap-2"
-                  aria-label={`${project.name} delivery languages`}
+                  aria-label={`${project.name} ${content.projectDeliveryLanguagesLabel}`}
                 >
                   {project.deliveryLanguages.map((language) => (
                     <li

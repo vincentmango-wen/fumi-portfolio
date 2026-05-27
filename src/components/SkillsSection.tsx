@@ -4,7 +4,11 @@ import type { CertEntry } from "@/lib/content";
 type Props = {
   content: Pick<
     SiteContent,
-    "sectionSkillsHeading" | "skillGroups" | "certsHeading"
+    "sectionSkillsHeading"
+    | "skillGroups"
+    | "certsHeading"
+    | "certObtainedLabel"
+    | "certPlannedLabel"
   >;
   certs: CertEntry[];
 };
@@ -136,7 +140,7 @@ export function SkillsSection({ content, certs }: Props) {
 
             {/* Status icon */}
             <span
-              aria-label={cert.obtained ? "取得済" : "取得予定"}
+              aria-label={cert.obtained ? content.certObtainedLabel : content.certPlannedLabel}
               style={{
                 color: cert.obtained
                   ? "var(--color-accent)"
