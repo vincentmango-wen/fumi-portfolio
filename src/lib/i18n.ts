@@ -7,4 +7,4 @@ export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
-export const SITE_URL = "https://fumi-wen.vercel.app";
+export const SITE_URL = "https://fumi-portfolio.vercel.app";

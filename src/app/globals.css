@@ -10,7 +10,7 @@
   /* --- Text (light) --- */
   --color-text-primary: oklch(0.15 0.04 45);
   --color-text-secondary: oklch(0.42 0.04 45);
-  --color-text-muted: oklch(0.60 0.02 45);
+  --color-text-muted: oklch(0.48 0.03 45);
 
   /* --- Accent (Vermillion / 朱) --- */
   --color-accent: oklch(0.50 0.20 22);
@@ -70,7 +70,7 @@
       --color-ink: oklch(0.94 0.02 85);
       --color-text-primary: oklch(0.94 0.02 85);
       --color-text-secondary: oklch(0.68 0.03 85);
-      --color-text-muted: oklch(0.50 0.02 45);
+      --color-text-muted: oklch(0.58 0.02 45);
       --color-accent: oklch(0.62 0.18 22);
       --color-accent-subtle: oklch(0.22 0.08 22);
       --color-accent-fg: oklch(0.13 0.04 45);
