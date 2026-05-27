@@ -10,7 +10,6 @@ type Props = {
     | "romaji"
     | "subRole"
     | "tagline"
-    | "taglineAlt"
     | "ctaPrimary"
     | "ctaSecondary"
     | "portraitAlt"
@@ -99,18 +98,6 @@ export function HeroSection({ content }: Props) {
           }}
         >
           {content.tagline}
-        </p>
-
-        {/* Tagline — secondary language, decorative */}
-        <p
-          aria-hidden="true"
-          className="mt-2 text-(--color-text-muted)"
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "var(--text-base)",
-          }}
-        >
-          {content.taglineAlt}
         </p>
 
         {/* CTAs */}

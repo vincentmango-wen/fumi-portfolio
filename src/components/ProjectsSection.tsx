@@ -122,6 +122,27 @@ export function ProjectsSection({ content }: Props) {
                 >
                   {project.stack.join(" · ")}
                 </p>
+
+                <ul
+                  className="mt-4 flex flex-wrap gap-2"
+                  aria-label={`${project.name} delivery languages`}
+                >
+                  {project.deliveryLanguages.map((language) => (
+                    <li
+                      key={language}
+                      className="border border-(--color-border) text-(--color-text-secondary)"
+                      style={{
+                        borderRadius: "var(--radius-sm)",
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        lineHeight: 1,
+                        padding: "6px 10px",
+                      }}
+                    >
+                      {language}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Status badge */}

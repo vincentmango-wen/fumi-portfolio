@@ -51,14 +51,6 @@ export function PhilosophySection({ content }: Props) {
           「
         </span>
 
-        {/*
-         * ふみさん手入れポイント（最重要）:
-         * philosophyBody は src/lib/content.ts で編集してください。
-         * ・あなた自身の IT・AI 哲学を 200〜400 字で書き直す
-         * ・「国・国籍・台湾人として」等の表現は使わない
-         * ・絵文字・アイコン不使用
-         * ・このコメントは本番前に削除してください
-         */}
         <p
           className="font-serif text-(--color-text-primary)"
           style={{

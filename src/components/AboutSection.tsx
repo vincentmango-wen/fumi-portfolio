@@ -106,11 +106,6 @@ export function AboutSection({ content }: Props) {
 
         {/* Right: Bio + Languages */}
         <div>
-          {/*
-           * ふみさん手入れポイント:
-           * aboutBody の内容は src/lib/content.ts で編集してください。
-           * 一人称体験（具体的なエピソード・失敗談）を 1〜2 行差し込んでください。
-           */}
           <p
             className="text-(--color-text-primary)"
             style={{
