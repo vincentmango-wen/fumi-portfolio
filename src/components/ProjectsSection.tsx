@@ -1,21 +1,30 @@
 import type { SiteContent } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
 type Props = {
+  locale: Locale;
   content: Pick<
     SiteContent,
     "sectionProjectsHeading"
     | "projects"
     | "projectPlaceholderLabel"
     | "projectDeliveryLanguagesLabel"
-    | "langSwitchLabelShort"
   >;
 };
 
-export function ProjectsSection({ content }: Props) {
-  // 案 B: content.langSwitchLabelShort が "ZH" なら ja ロケール（切替先が ZH）
-  const isJa = content.langSwitchLabelShort === "ZH";
-  const inDevBadgeText = isJa ? "開発中" : "開發中";
-  const inDevBadgeAriaLabel = isJa ? "開発中のプロジェクト" : "開發中的專案";
+/** locale ごとの「開発中」badge 文言。en 追加時は型エラーで検出できる。 */
+function getInDevBadge(locale: Locale): { text: string; ariaLabel: string } {
+  switch (locale) {
+    case "ja":
+      return { text: "開発中", ariaLabel: "開発中のプロジェクト" };
+    case "zh-TW":
+      return { text: "開發中", ariaLabel: "開發中的專案" };
+  }
+}
+
+export function ProjectsSection({ locale, content }: Props) {
+  const { text: inDevBadgeText, ariaLabel: inDevBadgeAriaLabel } =
+    getInDevBadge(locale);
 
   return (
     <section
