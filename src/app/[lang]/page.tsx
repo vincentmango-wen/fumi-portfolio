@@ -27,7 +27,7 @@ export default async function LandingPage({ params }: Props) {
         <HeroSection content={c} />
         <AboutSection content={c} />
         <SkillsSection content={c} certs={CERTS} />
-        <ProjectsSection content={c} />
+        <ProjectsSection locale={lang} content={c} />
         <PhilosophySection content={c} />
       </main>
       <ContactFooter content={c} />

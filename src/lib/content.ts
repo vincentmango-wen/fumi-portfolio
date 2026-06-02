@@ -113,13 +113,13 @@ const CERTS: CertEntry[] = [
   },
   {
     date: "2025.12",
-    nameJa: "LPIC Level 1",
-    nameZh: "LPIC Level 1",
-    nameEn: "LPIC Level 1",
+    nameJa: "Prompt Engineer Pro",
+    nameZh: "Prompt Engineer Pro",
+    nameEn: "Prompt Engineering Professional",
     obtained: true,
   },
   {
-    date: "2026.01",
+    date: "2026.03",
     nameJa: "Java Silver SE 17",
     nameZh: "Java Silver SE 17",
     nameEn: "Oracle Java Silver SE 17",
@@ -127,9 +127,9 @@ const CERTS: CertEntry[] = [
   },
   {
     date: "2026.05",
-    nameJa: "Prompt Engineer Pro",
-    nameZh: "Prompt Engineer Pro",
-    nameEn: "Prompt Engineering Professional",
+    nameJa: "LPIC Level 1",
+    nameZh: "LPIC Level 1",
+    nameEn: "LPIC Level 1",
     obtained: true,
   },
   {
@@ -174,7 +174,7 @@ export const CONTENT = {
       { year: "現在", role: "SES・個人開発を並走" },
     ],
     aboutBody:
-      "2017年に来日し、飲食業界でキャリアを始めました。厨房では、限られた時間と人数の中で段取りを組み、現場を止めないことの大切さを学びました。料理長としてチームを見た経験を土台に、現在は SES のインフラエンジニアとして運用・保守に向き合いながら、個人では AI を使ったプロダクト開発を続けています。",
+      "2017年に来日し、飲食業界でキャリアを始めました。厨房という現場では、限られた時間と人数の中で「どうすれば客足が途切れず、料理が止まらないか」を毎日問われ続け、段取り・仕入れ・シフト調整など、現場の課題を一つずつ解いていく仕事を積み重ねました。料理長として一店舗を任された経験を通して、課題は技術の前に「観察」から始まることを学びました。その後、現場の課題を解く道具を IT に広げたいと考え、インフラエンジニアへ転向しました。現在は SES のインフラエンジニアとして運用・保守に向き合いながら、見えにくい部分の不備が現場全体を止める怖さと、それを未然に防ぐ地道な作業の価値を実感しています。同時に、AI が現実の業務を変えていく時代に、自分でも手を動かしたいと考え、個人では Claude / OpenAI などの LLM を使ったプロダクト開発を続けています。情報過多・食材ロス・タスク管理の手間など、生活と仕事の隙間にある小さな課題を、AI と組み合わせて解いていくのが今の取り組みです。",
     languagesHeading: "Languages",
     languages: ["中文（繁体字）", "日本語", "英語"],
 
@@ -182,24 +182,32 @@ export const CONTENT = {
     sectionSkillsHeading: "Skills & Certifications",
     skillGroups: [
       {
-        heading: "Infrastructure & Network",
-        items: ["Linux", "Bash", "Nginx", "TCP/IP", "DNS"],
+        heading: "使用言語",
+        items: ["Python", "TypeScript", "JavaScript", "Java", "Bash", "HTML/CSS"],
       },
       {
-        heading: "Development & AI",
-        items: [
-          "Python",
-          "Java",
-          "FastAPI",
-          "Claude API",
-          "React",
-          "Next.js",
-          "TypeScript",
-        ],
+        heading: "開発環境",
+        items: ["Cursor", "Claude Code"],
       },
       {
-        heading: "Tools",
-        items: ["Git", "GitHub", "Notion", "Obsidian", "Claude Code"],
+        heading: "プロジェクト管理",
+        items: ["Git", "GitHub", "Notion", "Obsidian"],
+      },
+      {
+        heading: "OS",
+        items: ["Linux", "macOS", "Windows"],
+      },
+      {
+        heading: "データベース",
+        items: ["MySQL", "PostgreSQL (Supabase)"],
+      },
+      {
+        heading: "フレームワーク / ライブラリ",
+        items: ["Next.js", "React", "FastAPI", "Spring Boot", "Node.js"],
+      },
+      {
+        heading: "開発工程 / AI 活用",
+        items: ["保守・運用", "Claude API", "OpenAI API", "LangChain", "RAG", "プロンプトエンジニアリング"],
       },
     ],
     certsHeading: "証照 / 證照",
@@ -214,7 +222,7 @@ export const CONTENT = {
         statusIcon: "●",
         statusLabel: "Running",
         description:
-          "Notion + Slack + LINE 統合の個人秘書ボット。タスク管理と日次サマリを自動化。",
+          "タスクがアプリ間で散らばり、毎朝何から手をつけるか迷う課題を、Notion + Slack + LINE を 1 つの動線にまとめて解決する個人秘書ボット。",
         deliveryLanguages: ["中国語", "日本語"],
         stack: ["TypeScript", "Deno", "Notion API"],
         imageUrl: "/projects/secretary-bot-demo.png",
@@ -225,7 +233,7 @@ export const CONTENT = {
         statusIcon: "▲",
         statusLabel: "Released",
         description:
-          "冷蔵庫の食材から AI がレシピを提案。飲食業での経験と生成 AI を掛け合わせたプロダクト。",
+          "冷蔵庫に残った食材を使い切れず捨ててしまう日常の小さな課題を、飲食業の段取り経験と生成 AI を掛け合わせて解決するレシピ提案ツール。",
         deliveryLanguages: ["日本語"],
         stack: ["Next.js", "TypeScript", "Claude API", "Supabase"],
         imageUrl: "/projects/recipe-generator.png",
@@ -249,7 +257,7 @@ export const CONTENT = {
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT & AI Philosophy",
     philosophyBody:
-      "私にとって技術は、目の前の作業を少し楽にし、必要なときに迷わず使える状態まで落とし込んで初めて価値があります。インフラ運用では、見えない部分の小さな不備が現場全体を止めることを学びました。AI も同じで、派手な出力よりも、判断の根拠を残し、人が確認できる流れに組み込むことを重視しています。使う人の声から始め、検証しながら、長く安心して任せられる仕組みに育てていく。その積み重ねを大切にしています。",
+      "私にとって技術は、目の前の困りごとを少し軽くし、誰でも迷わず使える状態まで落とし込んで初めて価値があります。飲食の現場で身につけた「現場の声から始める」という姿勢は、インフラ運用でも、AI を組み込んだプロダクト開発でも変わりません。インフラ運用では、見えない部分の小さな不備が現場全体を止めることを学びました。AI も同じで、派手な出力よりも、判断の根拠を残し、人が確認できる流れに組み込むことを重視しています。道具は時代によって変わりますが、「使う人の声から始め、検証しながら、長く安心して任せられる仕組みに育てる」という姿勢は、飲食から IT、そして AI へとキャリアを移してきた今も変わらず大切にしています。",
 
     // ---- Contact ----
     sectionContactHeading: "Contact",
@@ -284,7 +292,7 @@ export const CONTENT = {
       { year: "現在", role: "SES 工作與個人開發並行" },
     ],
     aboutBody:
-      "2017 年赴日後，我從餐飲業開始累積工作經驗。廚房現場讓我學會在有限時間與人力之下安排流程，並把「不要讓現場停下來」放在第一位。後來以料理長的經驗為基礎轉向 IT，目前在 SES 公司擔任基礎架構工程師，負責日常維運，同時也持續開發結合 AI 的個人專案。",
+      "2017 年赴日後，我從餐飲業開始累積工作經驗。廚房是個每天都在問「如何讓客人不間斷、料理不中止」的現場，我在有限的時間與人力中，反覆處理備料安排、進貨調配、排班調整等現場課題。擔任料理長、獨立負責一間店的經驗，讓我學到：解決問題的起點，是在技術之前先學會「觀察」。之後，我希望把解決現場問題的工具延伸到 IT 領域，因此轉職成為基礎架構工程師。目前在 SES 公司負責系統維運與保養，親身感受到不起眼的細節若出現漏洞，足以讓整個現場停擺的壓力，也更珍視那些默默防止問題發生的日常作業。同時，面對 AI 正在改變實際業務的時代，我也想親手嘗試，持續以 Claude、OpenAI 等 LLM 進行個人產品開發。資訊過量、食材浪費、任務管理的繁瑣——我想用 AI 來解決這些生活與工作之間的小小課題。",
     languagesHeading: "語言能力",
     languages: ["中文（繁體）", "日本語（業務水準）", "英文（一般溝通）"],
 
@@ -292,24 +300,32 @@ export const CONTENT = {
     sectionSkillsHeading: "技術能力與證照",
     skillGroups: [
       {
-        heading: "Infrastructure & Network",
-        items: ["Linux", "Bash", "Nginx", "TCP/IP", "DNS"],
+        heading: "程式語言",
+        items: ["Python", "TypeScript", "JavaScript", "Java", "Bash", "HTML/CSS"],
       },
       {
-        heading: "Development & AI",
-        items: [
-          "Python",
-          "Java",
-          "FastAPI",
-          "Claude API",
-          "React",
-          "Next.js",
-          "TypeScript",
-        ],
+        heading: "開發環境",
+        items: ["Cursor", "Claude Code"],
       },
       {
-        heading: "Tools",
-        items: ["Git", "GitHub", "Notion", "Obsidian", "Claude Code"],
+        heading: "專案管理",
+        items: ["Git", "GitHub", "Notion", "Obsidian"],
+      },
+      {
+        heading: "作業系統",
+        items: ["Linux", "macOS", "Windows"],
+      },
+      {
+        heading: "資料庫",
+        items: ["MySQL", "PostgreSQL (Supabase)"],
+      },
+      {
+        heading: "框架 / 函式庫",
+        items: ["Next.js", "React", "FastAPI", "Spring Boot", "Node.js"],
+      },
+      {
+        heading: "開發流程 / AI 應用",
+        items: ["維運", "Claude API", "OpenAI API", "LangChain", "RAG", "Prompt Engineering"],
       },
     ],
     certsHeading: "證照 / 証照",
@@ -324,7 +340,7 @@ export const CONTENT = {
         statusIcon: "●",
         statusLabel: "Running",
         description:
-          "整合 Notion + Slack + LINE 的個人秘書機器人，將任務管理與每日摘要自動化。",
+          "任務分散在各個 App 之間、每天早上不知從何開始——為了解決這個困擾，將 Notion + Slack + LINE 整合成單一動線的個人秘書機器人。",
         deliveryLanguages: ["中文", "日文"],
         stack: ["TypeScript", "Deno", "Notion API"],
         imageUrl: "/projects/secretary-bot-demo.png",
@@ -335,7 +351,7 @@ export const CONTENT = {
         statusIcon: "▲",
         statusLabel: "Released",
         description:
-          "根據冰箱現有食材由 AI 推薦食譜，是結合餐飲業經驗與生成式 AI 的個人作品。",
+          "冰箱裡的食材用不完、最後只能丟掉——為了解決這個日常小困擾，結合餐飲業的備料經驗與生成式 AI，打造出的食譜推薦工具。",
         deliveryLanguages: ["日文"],
         stack: ["Next.js", "TypeScript", "Claude API", "Supabase"],
         imageUrl: "/projects/recipe-generator.png",
@@ -359,7 +375,7 @@ export const CONTENT = {
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT 與 AI 的思考方式",
     philosophyBody:
-      "對我來說，技術不是越新越好，而是要能讓眼前的工作變得更順、更穩，並且在需要時能被放心使用。做基礎架構維運時，我學到看不見的小問題也可能讓整個現場停下來。AI 也是一樣，比起漂亮的輸出，我更重視它是否留下判斷依據，是否能放進人可以確認的流程裡。從使用者的聲音出發，一邊驗證一邊調整，最後把工具養成可以長期信任的系統，這是我做產品時最在意的事。",
+      "對我來說，技術要能讓眼前的困擾稍微輕一點、讓任何人都能毫不猶豫地使用，才算真正有價值。在餐飲現場養成的「從第一線的聲音出發」這個習慣，無論在基礎架構維運還是結合 AI 的產品開發中，我都一直保持著。維運工作讓我學到，看不見的小漏洞足以讓整個現場停擺。AI 也是同樣的道理——比起華麗的輸出，我更重視的是：是否留下了判斷的依據，是否能放進人可以確認的流程裡。工具會隨著時代改變，但「從使用者的聲音出發、邊驗證邊調整、最終打造出可以長期信賴的機制」這個態度，從餐飲到 IT、再到 AI，是我一路走來始終珍視的事。",
 
     // ---- Contact ----
     sectionContactHeading: "聯絡方式",

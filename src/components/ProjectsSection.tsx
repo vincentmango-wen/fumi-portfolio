@@ -1,6 +1,8 @@
 import type { SiteContent } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
 type Props = {
+  locale: Locale;
   content: Pick<
     SiteContent,
     "sectionProjectsHeading"
@@ -10,7 +12,20 @@ type Props = {
   >;
 };
 
-export function ProjectsSection({ content }: Props) {
+/** locale ごとの「開発中」badge 文言。en 追加時は型エラーで検出できる。 */
+function getInDevBadge(locale: Locale): { text: string; ariaLabel: string } {
+  switch (locale) {
+    case "ja":
+      return { text: "開発中", ariaLabel: "開発中のプロジェクト" };
+    case "zh-TW":
+      return { text: "開發中", ariaLabel: "開發中的專案" };
+  }
+}
+
+export function ProjectsSection({ locale, content }: Props) {
+  const { text: inDevBadgeText, ariaLabel: inDevBadgeAriaLabel } =
+    getInDevBadge(locale);
+
   return (
     <section
       id="projects"
@@ -49,7 +64,7 @@ export function ProjectsSection({ content }: Props) {
              */}
             {project.imageUrl ? (
               <div
-                className="mb-6 flex items-center justify-center overflow-hidden"
+                className="mb-6 relative flex items-center justify-center overflow-hidden"
                 style={{
                   aspectRatio: "16/9",
                   backgroundColor: "var(--color-surface-raised)",
@@ -63,6 +78,29 @@ export function ProjectsSection({ content }: Props) {
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
                 />
+                {project.statusIcon === "◌" && (
+                  <span
+                    aria-label={inDevBadgeAriaLabel}
+                    style={{
+                      position: "absolute",
+                      top: "8px",
+                      right: "8px",
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "var(--text-xs)",
+                      lineHeight: 1,
+                      letterSpacing: "0.04em",
+                      color: "var(--color-badge-in-dev-text)",
+                      backgroundColor: "var(--color-badge-in-dev-bg)",
+                      border: "1px solid var(--color-badge-in-dev-border)",
+                      borderRadius: "9999px",
+                      padding: "4px 10px",
+                      zIndex: 1,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {inDevBadgeText}
+                  </span>
+                )}
               </div>
             ) : (
               <div
