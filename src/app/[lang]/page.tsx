@@ -12,7 +12,7 @@ import { ContactFooter } from "@/components/ContactFooter";
 type Props = { params: Promise<{ lang: string }> };
 
 export function generateStaticParams() {
-  return (["ja", "zh-TW"] as Locale[]).map((lang) => ({ lang }));
+  return (["ja", "zh-TW", "en"] as Locale[]).map((lang) => ({ lang }));
 }
 
 export default async function LandingPage({ params }: Props) {
@@ -26,7 +26,7 @@ export default async function LandingPage({ params }: Props) {
       <main>
         <HeroSection content={c} />
         <AboutSection content={c} />
-        <SkillsSection content={c} certs={CERTS} />
+        <SkillsSection locale={lang} content={c} certs={CERTS} />
         <ProjectsSection locale={lang} content={c} />
         <PhilosophySection content={c} />
       </main>

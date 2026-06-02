@@ -1,7 +1,8 @@
-import type { SiteContent } from "@/lib/content";
-import type { CertEntry } from "@/lib/content";
+import type { SiteContent, CertEntry } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
 type Props = {
+  locale: Locale;
   content: Pick<
     SiteContent,
     "sectionSkillsHeading"
@@ -13,7 +14,7 @@ type Props = {
   certs: CertEntry[];
 };
 
-export function SkillsSection({ content, certs }: Props) {
+export function SkillsSection({ locale, content, certs }: Props) {
   return (
     <section
       id="skills"
@@ -104,7 +105,7 @@ export function SkillsSection({ content, certs }: Props) {
               gridTemplateColumns: "5rem 1fr 1fr 1.5rem",
             }}
           >
-            {/* Date */}
+            {/* Date — en では dateEn を優先、省略時は date を fallback */}
             <span
               className="text-(--color-text-muted)"
               style={{
@@ -113,7 +114,7 @@ export function SkillsSection({ content, certs }: Props) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {cert.date}
+              {locale === "en" ? (cert.dateEn ?? cert.date) : cert.date}
             </span>
 
             {/* Japanese name */}
