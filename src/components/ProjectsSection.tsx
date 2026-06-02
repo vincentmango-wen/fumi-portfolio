@@ -7,10 +7,16 @@ type Props = {
     | "projects"
     | "projectPlaceholderLabel"
     | "projectDeliveryLanguagesLabel"
+    | "langSwitchLabelShort"
   >;
 };
 
 export function ProjectsSection({ content }: Props) {
+  // 案 B: content.langSwitchLabelShort が "ZH" なら ja ロケール（切替先が ZH）
+  const isJa = content.langSwitchLabelShort === "ZH";
+  const inDevBadgeText = isJa ? "開発中" : "開發中";
+  const inDevBadgeAriaLabel = isJa ? "開発中のプロジェクト" : "開發中的專案";
+
   return (
     <section
       id="projects"
@@ -49,7 +55,7 @@ export function ProjectsSection({ content }: Props) {
              */}
             {project.imageUrl ? (
               <div
-                className="mb-6 flex items-center justify-center overflow-hidden"
+                className="mb-6 relative flex items-center justify-center overflow-hidden"
                 style={{
                   aspectRatio: "16/9",
                   backgroundColor: "var(--color-surface-raised)",
@@ -63,6 +69,29 @@ export function ProjectsSection({ content }: Props) {
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
                 />
+                {project.statusIcon === "◌" && (
+                  <span
+                    aria-label={inDevBadgeAriaLabel}
+                    style={{
+                      position: "absolute",
+                      top: "8px",
+                      right: "8px",
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "var(--text-xs)",
+                      lineHeight: 1,
+                      letterSpacing: "0.04em",
+                      color: "var(--color-badge-in-dev-text)",
+                      backgroundColor: "var(--color-badge-in-dev-bg)",
+                      border: "1px solid var(--color-badge-in-dev-border)",
+                      borderRadius: "9999px",
+                      padding: "4px 10px",
+                      zIndex: 1,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {inDevBadgeText}
+                  </span>
+                )}
               </div>
             ) : (
               <div
