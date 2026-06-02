@@ -15,7 +15,8 @@ export type TimelineEntry = {
 // ============================================================
 
 export type CertEntry = {
-  date: string;            // "2025.08" など、両言語共通
+  date: string;            // "2025.08" など、ja/zh-TW 共通
+  dateEn?: string;         // en 用の日付表示。省略時は date を fallback
   nameJa: string;          // 日本語名
   nameZh: string;          // 中文名（または日本語のまま）
   nameEn: string;          // 英語名（共通・翻訳しない）
@@ -40,16 +41,64 @@ export type ProjectCard = {
 };
 
 // ============================================================
+// LangSwitcher 3 値化（FP-009）
+// ============================================================
+
+/**
+ * 各言語オプション。
+ * 旧: langSwitchLabel / langSwitchLabelShort / langSwitchAriaLabel / langSwitchHref
+ * 新: languages[].* に置き換え。配列にすることで 4 言語以上も同じ型で対応。
+ */
+export type LangOption = {
+  /** URL 上のロケール文字列 */
+  locale: Locale;
+  /** ヘッダー表示用 ISO 大文字コード（モバイル時もこれだけ使う） */
+  isoLabel: string;       // 'JA' | 'ZH' | 'EN'（必ず大文字リテラル / text-transform に頼らない）
+  /** Endonym（デスクトップでは isoLabel に空白で続けて表示） */
+  endonym: string;        // '日本語' | '繁體中文' | 'English'
+  /** inactive 状態でのその言語向け aria-label */
+  ariaLabel: string;      // 例: 'Switch to English'
+  /** 切り替え先 URL */
+  href: string;           // '/en'
+};
+
+// ============================================================
 // Root content type
 // ============================================================
 
 export type SiteContent = {
   // Header
   logoLabel: string;
-  langSwitchLabel: string;        // desktop
-  langSwitchLabelShort: string;   // mobile (JA / ZH)
-  langSwitchAriaLabel: string;
-  langSwitchHref: string;
+
+  /**
+   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
+   */
+  langSwitchLabel?: string;        // desktop
+  /**
+   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
+   */
+  langSwitchLabelShort?: string;   // mobile (JA / ZH)
+  /**
+   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
+   */
+  langSwitchAriaLabel?: string;
+  /**
+   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
+   */
+  langSwitchHref?: string;
+
+  /**
+   * 全言語オプションの一覧（LangSwitcher 用）。現在表示中の言語も含む。
+   * コンポーネント側で locale === current locale を判定して active/inactive を決める。
+   * 並び順: ['ja', 'zh-TW', 'en']
+   */
+  langOptions: LangOption[];
+
+  /**
+   * ナビの aria-label（言語切替 nav 全体）。
+   * 例: '言語切替' / '語言切換' / 'Language switcher'
+   */
+  langSwitcherNavLabel: string;
 
   // Hero
   namePrimary: string;
@@ -67,7 +116,7 @@ export type SiteContent = {
   timeline: TimelineEntry[];
   aboutBody: string;
   languagesHeading: string;
-  languages: string[];
+  languages: string[];            // 話せる言語リスト（About セクション）
 
   // Skills
   sectionSkillsHeading: string;
@@ -88,12 +137,13 @@ export type SiteContent = {
 
   // Contact / Footer
   sectionContactHeading: string;
-  copyrightText: string; // "© 2026 ふみ / 阮念文"（両言語共通）
+  copyrightText: string; // "© 2026 ふみ / 阮念文"（3 言語共通）
 };
 
 // ============================================================
 // 証照リスト（英語名は両言語共通・翻訳しない）
 // AWS は「2026年内取得予定」と曖昧表現（High-2 対応）
+// dateEn: en ロケールでの表示文字列（省略時は date を fallback）
 // ============================================================
 
 const CERTS: CertEntry[] = [
@@ -134,6 +184,7 @@ const CERTS: CertEntry[] = [
   },
   {
     date: "2026年内",
+    dateEn: "Scheduled in 2026",   // 制約 1: 月を明示しない曖昧表現
     nameJa: "AWS CLF / SAA",
     nameZh: "AWS CLF / SAA",
     nameEn: "AWS CLF / SAA",
@@ -142,17 +193,49 @@ const CERTS: CertEntry[] = [
 ];
 
 // ============================================================
-// CONTENT — 両 locale のキー一致を型で強制
+// 3 言語共通の languages 配列（LangSwitcher 用）
+// ============================================================
+
+const LANG_OPTIONS: LangOption[] = [
+  {
+    locale: "ja",
+    isoLabel: "JA",
+    endonym: "日本語",
+    ariaLabel: "日本語に切り替え",
+    href: "/ja",
+  },
+  {
+    locale: "zh-TW",
+    isoLabel: "ZH",
+    endonym: "繁體中文",
+    ariaLabel: "切換至繁體中文",
+    href: "/zh-TW",
+  },
+  {
+    locale: "en",
+    isoLabel: "EN",
+    endonym: "English",
+    ariaLabel: "Switch to English",
+    href: "/en",
+  },
+];
+
+// ============================================================
+// CONTENT — 全 locale のキー一致を型で強制
 // ============================================================
 
 export const CONTENT = {
   ja: {
     // ---- Header ----
     logoLabel: "ふみ",
+    // @deprecated フィールド（移行期 / LangSwitcher は languages[] を使用）
     langSwitchLabel: "繁體中文",
     langSwitchLabelShort: "ZH",
     langSwitchAriaLabel: "繁體中文に切り替え",
     langSwitchHref: "/zh-TW",
+    // FP-009 新フィールド
+    langOptions: LANG_OPTIONS,
+    langSwitcherNavLabel: "言語切替",
 
     // ---- Hero ----
     namePrimary: "阮 念文",
@@ -168,13 +251,13 @@ export const CONTENT = {
     // ---- About ----
     sectionAboutHeading: "About",
     timeline: [
-      { year: "2017", role: "来日・飲食業界へ" },
+      { year: "2017", role: "飲食業界でキャリア開始" },
       { year: "2021", role: "料理長に昇格" },
       { year: "2026", role: "IT / インフラエンジニアへ転向" },
       { year: "現在", role: "SES・個人開発を並走" },
     ],
     aboutBody:
-      "2017年に来日し、飲食業界でキャリアを始めました。厨房という現場では、限られた時間と人数の中で「どうすれば客足が途切れず、料理が止まらないか」を毎日問われ続け、段取り・仕入れ・シフト調整など、現場の課題を一つずつ解いていく仕事を積み重ねました。料理長として一店舗を任された経験を通して、課題は技術の前に「観察」から始まることを学びました。その後、現場の課題を解く道具を IT に広げたいと考え、インフラエンジニアへ転向しました。現在は SES のインフラエンジニアとして運用・保守に向き合いながら、見えにくい部分の不備が現場全体を止める怖さと、それを未然に防ぐ地道な作業の価値を実感しています。同時に、AI が現実の業務を変えていく時代に、自分でも手を動かしたいと考え、個人では Claude / OpenAI などの LLM を使ったプロダクト開発を続けています。情報過多・食材ロス・タスク管理の手間など、生活と仕事の隙間にある小さな課題を、AI と組み合わせて解いていくのが今の取り組みです。",
+      "2017年、飲食業界でキャリアを始めました。厨房という現場では、限られた時間と人数の中で「どうすれば客足が途切れず、料理が止まらないか」を毎日問われ続け、段取り・仕入れ・シフト調整など、現場の課題を一つずつ解いていく仕事を積み重ねました。料理長として一店舗を任された経験を通して、課題は技術の前に「観察」から始まることを学びました。その後、現場の課題を解く道具を IT に広げたいと考え、インフラエンジニアへ転向しました。現在は SES のインフラエンジニアとして運用・保守に向き合いながら、見えにくい部分の不備が現場全体を止める怖さと、それを未然に防ぐ地道な作業の価値を実感しています。同時に、AI が現実の業務を変えていく時代に、自分でも手を動かしたいと考え、個人では Claude / OpenAI などの LLM を使ったプロダクト開発を続けています。情報過多・食材ロス・タスク管理の手間など、生活と仕事の隙間にある小さな課題を、AI と組み合わせて解いていくのが今の取り組みです。",
     languagesHeading: "Languages",
     languages: ["中文（繁体字）", "日本語", "英語"],
 
@@ -219,7 +302,7 @@ export const CONTENT = {
     projects: [
       {
         name: "secretary-bot",
-        statusIcon: "●",
+        statusIcon: "●" as const,
         statusLabel: "Running",
         description:
           "タスクがアプリ間で散らばり、毎朝何から手をつけるか迷う課題を、Notion + Slack + LINE を 1 つの動線にまとめて解決する個人秘書ボット。",
@@ -230,7 +313,7 @@ export const CONTENT = {
       },
       {
         name: "Recipe Generator",
-        statusIcon: "▲",
+        statusIcon: "▲" as const,
         statusLabel: "Released",
         description:
           "冷蔵庫に残った食材を使い切れず捨ててしまう日常の小さな課題を、飲食業の段取り経験と生成 AI を掛け合わせて解決するレシピ提案ツール。",
@@ -241,7 +324,7 @@ export const CONTENT = {
       },
       {
         name: "DAINews",
-        statusIcon: "◌",
+        statusIcon: "◌" as const,
         statusLabel: "In Dev",
         description:
           "AI ニュース日次配信 SaaS。個人向けの情報過多解消を目的に開発中。",
@@ -267,10 +350,14 @@ export const CONTENT = {
   "zh-TW": {
     // ---- Header ----
     logoLabel: "ふみ",
+    // @deprecated フィールド（移行期 / LangSwitcher は languages[] を使用）
     langSwitchLabel: "日本語",
     langSwitchLabelShort: "JA",
     langSwitchAriaLabel: "切換至日文",
     langSwitchHref: "/ja",
+    // FP-009 新フィールド
+    langOptions: LANG_OPTIONS,
+    langSwitcherNavLabel: "語言切換",
 
     // ---- Hero ----
     namePrimary: "阮念文",
@@ -286,13 +373,13 @@ export const CONTENT = {
     // ---- About ----
     sectionAboutHeading: "About",
     timeline: [
-      { year: "2017", role: "赴日，進入餐飲業" },
+      { year: "2017", role: "進入餐飲業" },
       { year: "2021", role: "升任料理長" },
       { year: "2026", role: "轉職至 IT / 基礎架構領域" },
       { year: "現在", role: "SES 工作與個人開發並行" },
     ],
     aboutBody:
-      "2017 年赴日後，我從餐飲業開始累積工作經驗。廚房是個每天都在問「如何讓客人不間斷、料理不中止」的現場，我在有限的時間與人力中，反覆處理備料安排、進貨調配、排班調整等現場課題。擔任料理長、獨立負責一間店的經驗，讓我學到：解決問題的起點，是在技術之前先學會「觀察」。之後，我希望把解決現場問題的工具延伸到 IT 領域，因此轉職成為基礎架構工程師。目前在 SES 公司負責系統維運與保養，親身感受到不起眼的細節若出現漏洞，足以讓整個現場停擺的壓力，也更珍視那些默默防止問題發生的日常作業。同時，面對 AI 正在改變實際業務的時代，我也想親手嘗試，持續以 Claude、OpenAI 等 LLM 進行個人產品開發。資訊過量、食材浪費、任務管理的繁瑣——我想用 AI 來解決這些生活與工作之間的小小課題。",
+      "2017 年起，我從餐飲業開始累積工作經驗。廚房是個每天都在問「如何讓客人不間斷、料理不中止」的現場，我在有限的時間與人力中，反覆處理備料安排、進貨調配、排班調整等現場課題。擔任料理長、獨立負責一間店的經驗，讓我學到：解決問題的起點，是在技術之前先學會「觀察」。之後，我希望把解決現場問題的工具延伸到 IT 領域，因此轉職成為基礎架構工程師。目前在 SES 公司負責系統維運與保養，親身感受到不起眼的細節若出現漏洞，足以讓整個現場停擺的壓力，也更珍視那些默默防止問題發生的日常作業。同時，面對 AI 正在改變實際業務的時代，我也想親手嘗試，持續以 Claude、OpenAI 等 LLM 進行個人產品開發。資訊過量、食材浪費、任務管理的繁瑣——我想用 AI 來解決這些生活與工作之間的小小課題。",
     languagesHeading: "語言能力",
     languages: ["中文（繁體）", "日本語（業務水準）", "英文（一般溝通）"],
 
@@ -337,7 +424,7 @@ export const CONTENT = {
     projects: [
       {
         name: "secretary-bot",
-        statusIcon: "●",
+        statusIcon: "●" as const,
         statusLabel: "Running",
         description:
           "任務分散在各個 App 之間、每天早上不知從何開始——為了解決這個困擾，將 Notion + Slack + LINE 整合成單一動線的個人秘書機器人。",
@@ -348,7 +435,7 @@ export const CONTENT = {
       },
       {
         name: "Recipe Generator",
-        statusIcon: "▲",
+        statusIcon: "▲" as const,
         statusLabel: "Released",
         description:
           "冰箱裡的食材用不完、最後只能丟掉——為了解決這個日常小困擾，結合餐飲業的備料經驗與生成式 AI，打造出的食譜推薦工具。",
@@ -359,7 +446,7 @@ export const CONTENT = {
       },
       {
         name: "DAINews",
-        statusIcon: "◌",
+        statusIcon: "◌" as const,
         statusLabel: "In Dev",
         description:
           "AI 新聞日報 SaaS，協助個人使用者整理過量資訊，目前開發中。",
@@ -381,7 +468,125 @@ export const CONTENT = {
     sectionContactHeading: "聯絡方式",
     copyrightText: "© 2026 ふみ / 阮念文",
   } satisfies SiteContent,
+
+  en: {
+    // ---- Header ----
+    logoLabel: "Fumi",
+    // FP-009 新フィールド
+    langOptions: LANG_OPTIONS,
+    langSwitcherNavLabel: "Language switcher",
+
+    // ---- Hero ----
+    namePrimary: "Fumi",
+    namePrimaryLang: "en",
+    nameSecondary: "阮念文",          // aria-hidden, kanji name
+    romaji: "Fumi — IT Support & Infrastructure Engineer",
+    subRole: "Independent SaaS Developer",
+    tagline: "Turning frontline voices into reliable systems.",
+    ctaPrimary: "See projects",
+    ctaSecondary: "Get in touch →",
+    portraitAlt: "Portrait of Fumi (阮念文)",
+
+    // ---- About ----
+    sectionAboutHeading: "About",
+    timeline: [
+      { year: "2017", role: "Began career in the hospitality industry" },
+      { year: "2021", role: "Promoted to executive chef" },
+      { year: "2026", role: "Transitioned to IT / infrastructure engineering" },
+      { year: "Present", role: "SES engineering and independent development in parallel" },
+    ],
+    aboutBody:
+      "I began my career in the hospitality industry in 2017. The kitchen was a place where every day asked the same question — how do you keep customers coming and the food never stopping? — in finite time, with finite hands. I learned to solve operational problems one at a time: prep planning, sourcing, scheduling. Running a single restaurant as executive chef taught me that solving a problem starts with observation, before technique. Looking to extend that same mindset, I moved into infrastructure engineering. Today I work in SES on production operations and maintenance, learning firsthand how small failures in the parts no one sees can bring an entire site to a halt — and the quiet value of the steady work that prevents them. In parallel, at a moment when AI is reshaping real business work, I want my own hands on it. I build personal products on top of LLMs like Claude and OpenAI. Information overload, food waste, the friction of task management — the small problems that live in the cracks between work and daily life — are what I want to solve by combining those tools with what I already know.",
+    languagesHeading: "Languages",
+    languages: ["Mandarin (Traditional)", "Japanese", "English"],
+
+    // ---- Skills ----
+    sectionSkillsHeading: "Skills & Certifications",
+    skillGroups: [
+      {
+        heading: "Programming Languages",
+        items: ["Python", "TypeScript", "JavaScript", "Java", "Bash", "HTML/CSS"],
+      },
+      {
+        heading: "Development Environment",
+        items: ["Cursor", "Claude Code"],
+      },
+      {
+        heading: "Project Management",
+        items: ["Git", "GitHub", "Notion", "Obsidian"],
+      },
+      {
+        heading: "Operating Systems",
+        items: ["Linux", "macOS", "Windows"],
+      },
+      {
+        heading: "Databases",
+        items: ["MySQL", "PostgreSQL (Supabase)"],
+      },
+      {
+        heading: "Frameworks / Libraries",
+        items: ["Next.js", "React", "FastAPI", "Spring Boot", "Node.js"],
+      },
+      {
+        heading: "Process & AI",
+        items: ["Maintenance & Operations", "Claude API", "OpenAI API", "LangChain", "RAG", "Prompt Engineering"],
+      },
+    ],
+    certsHeading: "Certifications",
+    certObtainedLabel: "Obtained",
+    certPlannedLabel: "Planned",
+
+    // ---- Projects ----
+    sectionProjectsHeading: "Projects",
+    projects: [
+      {
+        name: "secretary-bot",
+        statusIcon: "●" as const,
+        statusLabel: "Running",
+        description:
+          "A personal secretary bot that pulls Notion, Slack, and LINE into one workflow, solving the morning friction of figuring out where to start when tasks are scattered across apps.",
+        deliveryLanguages: ["Mandarin", "Japanese"],
+        stack: ["TypeScript", "Deno", "Notion API"],
+        imageUrl: "/projects/secretary-bot-demo.png",
+        imageAlt: "secretary-bot digest delivery example (recreated with fictional tasks)",
+      },
+      {
+        name: "Recipe Generator",
+        statusIcon: "▲" as const,
+        statusLabel: "Released",
+        description:
+          "A recipe recommendation tool that pairs kitchen-prep instincts from years in restaurants with generative AI, so the leftover ingredients in your fridge stop going to waste.",
+        deliveryLanguages: ["Japanese"],
+        stack: ["Next.js", "TypeScript", "Claude API", "Supabase"],
+        imageUrl: "/projects/recipe-generator.png",
+        imageAlt: "Recipe Generator landing screen — a three-step UI that turns fridge ingredients into a recipe",
+      },
+      {
+        name: "DAINews",
+        statusIcon: "◌" as const,
+        statusLabel: "In Dev",
+        description:
+          "An AI daily news service in development, aimed at cutting through information overload for individual readers.",
+        deliveryLanguages: ["Japanese"],
+        stack: ["Next.js", "Claude API", "Resend"],
+        imageUrl: "/projects/dainews.png",
+        imageAlt: "DAINews morning email preview (mock display, in development)",
+      },
+    ],
+    projectPlaceholderLabel: "Coming soon",
+    projectDeliveryLanguagesLabel: "Delivery languages",
+
+    // ---- Philosophy ----
+    // 制約 2: 国・国籍・台湾人としての言及なし。普遍的な価値観として記述。
+    sectionPhilosophyHeading: "IT & AI Philosophy",
+    philosophyBody:
+      "Technology, for me, is only worth something when it makes the problem in front of someone a little lighter — and when it gets refined down to the point where anyone can use it without hesitation. The habit I picked up in restaurant kitchens, of starting from the voices on the floor, has stayed the same whether I'm running infrastructure or shipping products with AI baked in. Running infrastructure taught me that small, invisible failures can stop an entire operation. The same is true of AI: more important than a flashy output is leaving a trace of why a decision was made, and folding the system into a flow where a human can verify it. The tools change with the times, but the stance — start from the voice of the person using it, keep verifying as you go, and grow it into something that can be trusted for the long haul — is what I've carried through, from kitchens to IT to AI.",
+
+    // ---- Contact ----
+    sectionContactHeading: "Contact",
+    copyrightText: "© 2026 ふみ / 阮念文",  // 制約 5: 3 言語共通テキスト
+  } satisfies SiteContent,
 } as const satisfies Record<Locale, SiteContent>;
 
-// 証照リストを export（両言語で共通使用）
+// 証照リストを export（全言語で共通使用）
 export { CERTS };

@@ -1,14 +1,14 @@
 import type { SiteContent } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { LangSwitcher } from "@/components/LangSwitcher";
 
 type Props = {
-  lang: string;
+  lang: Locale;
   content: Pick<
     SiteContent,
     | "logoLabel"
-    | "langSwitchLabel"
-    | "langSwitchLabelShort"
-    | "langSwitchAriaLabel"
-    | "langSwitchHref"
+    | "langOptions"
+    | "langSwitcherNavLabel"
   >;
 };
 
@@ -35,17 +35,12 @@ export function SiteHeader({ lang, content }: Props) {
           {content.logoLabel}
         </a>
 
-        {/* Language switch */}
-        <a
-          href={content.langSwitchHref}
-          aria-label={content.langSwitchAriaLabel}
-          className="min-h-[44px] min-w-[44px] flex items-center justify-center text-(--color-text-secondary) underline-offset-4 transition-colors hover:text-(--color-accent) hover:underline focus-visible:rounded-sm"
-          style={{ fontSize: "var(--text-sm)" }}
-        >
-          {/* デスクトップ: フルラベル, モバイル: 短縮 */}
-          <span className="hidden sm:inline">{content.langSwitchLabel}</span>
-          <span className="sm:hidden">{content.langSwitchLabelShort}</span>
-        </a>
+        {/* Language switcher — 3 値化（FP-009） */}
+        <LangSwitcher
+          currentLocale={lang}
+          langOptions={content.langOptions}
+          navLabel={content.langSwitcherNavLabel}
+        />
       </div>
     </header>
   );

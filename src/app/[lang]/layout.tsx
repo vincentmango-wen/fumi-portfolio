@@ -46,7 +46,6 @@ const META = {
     description: "現場の声を、安定したシステムにつなぐ。",
     htmlLang: "ja",
     ogLocale: "ja_JP",
-    altLocale: "zh_TW",
     ogImage: `${SITE_URL}/og-ja.png`,
   },
   "zh-TW": {
@@ -54,8 +53,14 @@ const META = {
     description: "將使用者的聲音，連結成穩定運作的系統。",
     htmlLang: "zh-Hant-TW",
     ogLocale: "zh_TW",
-    altLocale: "ja_JP",
     ogImage: `${SITE_URL}/og-zh.png`,
+  },
+  en: {
+    title: "Fumi (阮念文) — Portfolio",
+    description: "Turning frontline voices into reliable systems.",
+    htmlLang: "en",
+    ogLocale: "en_US",
+    ogImage: `${SITE_URL}/og-en.png`,
   },
 } as const satisfies Record<Locale, unknown>;
 
@@ -79,7 +84,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: m.description,
       url: `${SITE_URL}/${lang}`,
       locale: m.ogLocale,
-      alternateLocale: [m.altLocale],
       images: [
         {
           url: m.ogImage,
@@ -100,6 +104,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         ja: `${SITE_URL}/ja`,
         "zh-Hant": `${SITE_URL}/zh-TW`,
+        en: `${SITE_URL}/en`,
         "x-default": `${SITE_URL}/ja`,
       },
     },

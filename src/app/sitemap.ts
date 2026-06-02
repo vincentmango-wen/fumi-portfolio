@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       languages: {
         ja: `${SITE_URL}/ja`,
         "zh-Hant": `${SITE_URL}/zh-TW`,
+        en: `${SITE_URL}/en`,
         "x-default": `${SITE_URL}/ja`,
       },
     },

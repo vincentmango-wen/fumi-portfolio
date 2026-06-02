@@ -12,13 +12,15 @@ type Props = {
   >;
 };
 
-/** locale ごとの「開発中」badge 文言。en 追加時は型エラーで検出できる。 */
+/** locale ごとの「開発中」badge 文言。新 locale 追加時は型エラーで検出できる。 */
 function getInDevBadge(locale: Locale): { text: string; ariaLabel: string } {
   switch (locale) {
     case "ja":
       return { text: "開発中", ariaLabel: "開発中のプロジェクト" };
     case "zh-TW":
       return { text: "開發中", ariaLabel: "開發中的專案" };
+    case "en":
+      return { text: "In Dev", ariaLabel: "Project in development" };
   }
 }
 
