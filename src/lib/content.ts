@@ -251,13 +251,13 @@ export const CONTENT = {
     // ---- About ----
     sectionAboutHeading: "About",
     timeline: [
-      { year: "2017", role: "来日・飲食業界へ" },
+      { year: "2017", role: "飲食業界でキャリア開始" },
       { year: "2021", role: "料理長に昇格" },
       { year: "2026", role: "IT / インフラエンジニアへ転向" },
       { year: "現在", role: "SES・個人開発を並走" },
     ],
     aboutBody:
-      "2017年に来日し、飲食業界でキャリアを始めました。厨房という現場では、限られた時間と人数の中で「どうすれば客足が途切れず、料理が止まらないか」を毎日問われ続け、段取り・仕入れ・シフト調整など、現場の課題を一つずつ解いていく仕事を積み重ねました。料理長として一店舗を任された経験を通して、課題は技術の前に「観察」から始まることを学びました。その後、現場の課題を解く道具を IT に広げたいと考え、インフラエンジニアへ転向しました。現在は SES のインフラエンジニアとして運用・保守に向き合いながら、見えにくい部分の不備が現場全体を止める怖さと、それを未然に防ぐ地道な作業の価値を実感しています。同時に、AI が現実の業務を変えていく時代に、自分でも手を動かしたいと考え、個人では Claude / OpenAI などの LLM を使ったプロダクト開発を続けています。情報過多・食材ロス・タスク管理の手間など、生活と仕事の隙間にある小さな課題を、AI と組み合わせて解いていくのが今の取り組みです。",
+      "2017年、飲食業界でキャリアを始めました。厨房という現場では、限られた時間と人数の中で「どうすれば客足が途切れず、料理が止まらないか」を毎日問われ続け、段取り・仕入れ・シフト調整など、現場の課題を一つずつ解いていく仕事を積み重ねました。料理長として一店舗を任された経験を通して、課題は技術の前に「観察」から始まることを学びました。その後、現場の課題を解く道具を IT に広げたいと考え、インフラエンジニアへ転向しました。現在は SES のインフラエンジニアとして運用・保守に向き合いながら、見えにくい部分の不備が現場全体を止める怖さと、それを未然に防ぐ地道な作業の価値を実感しています。同時に、AI が現実の業務を変えていく時代に、自分でも手を動かしたいと考え、個人では Claude / OpenAI などの LLM を使ったプロダクト開発を続けています。情報過多・食材ロス・タスク管理の手間など、生活と仕事の隙間にある小さな課題を、AI と組み合わせて解いていくのが今の取り組みです。",
     languagesHeading: "Languages",
     languages: ["中文（繁体字）", "日本語", "英語"],
 
@@ -373,13 +373,13 @@ export const CONTENT = {
     // ---- About ----
     sectionAboutHeading: "About",
     timeline: [
-      { year: "2017", role: "赴日，進入餐飲業" },
+      { year: "2017", role: "進入餐飲業" },
       { year: "2021", role: "升任料理長" },
       { year: "2026", role: "轉職至 IT / 基礎架構領域" },
       { year: "現在", role: "SES 工作與個人開發並行" },
     ],
     aboutBody:
-      "2017 年赴日後，我從餐飲業開始累積工作經驗。廚房是個每天都在問「如何讓客人不間斷、料理不中止」的現場，我在有限的時間與人力中，反覆處理備料安排、進貨調配、排班調整等現場課題。擔任料理長、獨立負責一間店的經驗，讓我學到：解決問題的起點，是在技術之前先學會「觀察」。之後，我希望把解決現場問題的工具延伸到 IT 領域，因此轉職成為基礎架構工程師。目前在 SES 公司負責系統維運與保養，親身感受到不起眼的細節若出現漏洞，足以讓整個現場停擺的壓力，也更珍視那些默默防止問題發生的日常作業。同時，面對 AI 正在改變實際業務的時代，我也想親手嘗試，持續以 Claude、OpenAI 等 LLM 進行個人產品開發。資訊過量、食材浪費、任務管理的繁瑣——我想用 AI 來解決這些生活與工作之間的小小課題。",
+      "2017 年起，我從餐飲業開始累積工作經驗。廚房是個每天都在問「如何讓客人不間斷、料理不中止」的現場，我在有限的時間與人力中，反覆處理備料安排、進貨調配、排班調整等現場課題。擔任料理長、獨立負責一間店的經驗，讓我學到：解決問題的起點，是在技術之前先學會「觀察」。之後，我希望把解決現場問題的工具延伸到 IT 領域，因此轉職成為基礎架構工程師。目前在 SES 公司負責系統維運與保養，親身感受到不起眼的細節若出現漏洞，足以讓整個現場停擺的壓力，也更珍視那些默默防止問題發生的日常作業。同時，面對 AI 正在改變實際業務的時代，我也想親手嘗試，持續以 Claude、OpenAI 等 LLM 進行個人產品開發。資訊過量、食材浪費、任務管理的繁瑣——我想用 AI 來解決這些生活與工作之間的小小課題。",
     languagesHeading: "語言能力",
     languages: ["中文（繁體）", "日本語（業務水準）", "英文（一般溝通）"],
 
@@ -490,13 +490,13 @@ export const CONTENT = {
     // ---- About ----
     sectionAboutHeading: "About",
     timeline: [
-      { year: "2017", role: "Moved to Japan, began career in hospitality" },
+      { year: "2017", role: "Began career in the hospitality industry" },
       { year: "2021", role: "Promoted to executive chef" },
       { year: "2026", role: "Transitioned to IT / infrastructure engineering" },
       { year: "Present", role: "SES engineering and independent development in parallel" },
     ],
     aboutBody:
-      "I moved to Japan in 2017 and began my career in the hospitality industry. The kitchen was a place where every day asked the same question — how do you keep customers coming and the food never stopping? — in finite time, with finite hands. I learned to solve operational problems one at a time: prep planning, sourcing, scheduling. Running a single restaurant as executive chef taught me that solving a problem starts with observation, before technique. Looking to extend that same mindset, I moved into infrastructure engineering. Today I work in SES on production operations and maintenance, learning firsthand how small failures in the parts no one sees can bring an entire site to a halt — and the quiet value of the steady work that prevents them. In parallel, at a moment when AI is reshaping real business work, I want my own hands on it. I build personal products on top of LLMs like Claude and OpenAI. Information overload, food waste, the friction of task management — the small problems that live in the cracks between work and daily life — are what I want to solve by combining those tools with what I already know.",
+      "I began my career in the hospitality industry in 2017. The kitchen was a place where every day asked the same question — how do you keep customers coming and the food never stopping? — in finite time, with finite hands. I learned to solve operational problems one at a time: prep planning, sourcing, scheduling. Running a single restaurant as executive chef taught me that solving a problem starts with observation, before technique. Looking to extend that same mindset, I moved into infrastructure engineering. Today I work in SES on production operations and maintenance, learning firsthand how small failures in the parts no one sees can bring an entire site to a halt — and the quiet value of the steady work that prevents them. In parallel, at a moment when AI is reshaping real business work, I want my own hands on it. I build personal products on top of LLMs like Claude and OpenAI. Information overload, food waste, the friction of task management — the small problems that live in the cracks between work and daily life — are what I want to solve by combining those tools with what I already know.",
     languagesHeading: "Languages",
     languages: ["Mandarin (Traditional)", "Japanese", "English"],
 
