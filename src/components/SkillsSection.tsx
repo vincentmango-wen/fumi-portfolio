@@ -102,7 +102,7 @@ export function SkillsSection({ locale, content, certs }: Props) {
             key={i}
             className="grid items-baseline gap-x-4"
             style={{
-              gridTemplateColumns: "5rem 1fr 1fr 1.5rem",
+              gridTemplateColumns: "minmax(5rem, max-content) 1fr 1fr 1.5rem",
             }}
           >
             {/* Date — en では dateEn を優先、省略時は date を fallback */}
