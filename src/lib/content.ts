@@ -31,6 +31,7 @@ export type ProjectStatus = "running" | "released" | "in-dev";
 
 export type ProjectCard = {
   name: string;
+  status: ProjectStatus;   // FP-012: enum 化。badge 判定はこちらを使う
   statusIcon: "●" | "▲" | "◌";
   statusLabel: string;     // "Running" | "Released" | "In Dev"（英語統一）
   description: string;
@@ -302,6 +303,7 @@ export const CONTENT = {
     projects: [
       {
         name: "secretary-bot",
+        status: "running" as const,
         statusIcon: "●" as const,
         statusLabel: "Running",
         description:
@@ -313,6 +315,7 @@ export const CONTENT = {
       },
       {
         name: "Recipe Generator",
+        status: "released" as const,
         statusIcon: "▲" as const,
         statusLabel: "Released",
         description:
@@ -324,6 +327,7 @@ export const CONTENT = {
       },
       {
         name: "DAINews",
+        status: "in-dev" as const,
         statusIcon: "◌" as const,
         statusLabel: "In Dev",
         description:
@@ -424,6 +428,7 @@ export const CONTENT = {
     projects: [
       {
         name: "secretary-bot",
+        status: "running" as const,
         statusIcon: "●" as const,
         statusLabel: "Running",
         description:
@@ -435,6 +440,7 @@ export const CONTENT = {
       },
       {
         name: "Recipe Generator",
+        status: "released" as const,
         statusIcon: "▲" as const,
         statusLabel: "Released",
         description:
@@ -446,6 +452,7 @@ export const CONTENT = {
       },
       {
         name: "DAINews",
+        status: "in-dev" as const,
         statusIcon: "◌" as const,
         statusLabel: "In Dev",
         description:
@@ -541,6 +548,7 @@ export const CONTENT = {
     projects: [
       {
         name: "secretary-bot",
+        status: "running" as const,
         statusIcon: "●" as const,
         statusLabel: "Running",
         description:
@@ -552,6 +560,7 @@ export const CONTENT = {
       },
       {
         name: "Recipe Generator",
+        status: "released" as const,
         statusIcon: "▲" as const,
         statusLabel: "Released",
         description:
@@ -563,6 +572,7 @@ export const CONTENT = {
       },
       {
         name: "DAINews",
+        status: "in-dev" as const,
         statusIcon: "◌" as const,
         statusLabel: "In Dev",
         description:
