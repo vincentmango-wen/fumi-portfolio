@@ -80,7 +80,7 @@ export function ProjectsSection({ locale, content }: Props) {
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
                 />
-                {project.statusIcon === "◌" && (
+                {project.status === "in-dev" && (
                   <span
                     aria-label={inDevBadgeAriaLabel}
                     style={{
