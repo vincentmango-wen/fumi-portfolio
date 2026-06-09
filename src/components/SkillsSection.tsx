@@ -14,6 +14,17 @@ type Props = {
   certs: CertEntry[];
 };
 
+/** locale ごとの cert date 表示。新 locale 追加時は型エラーで検出できる。 */
+function getCertDate(locale: Locale, cert: CertEntry): string {
+  switch (locale) {
+    case "ja":
+    case "zh-TW":
+      return cert.date;
+    case "en":
+      return cert.dateEn ?? cert.date;
+  }
+}
+
 export function SkillsSection({ locale, content, certs }: Props) {
   return (
     <section
@@ -114,7 +125,7 @@ export function SkillsSection({ locale, content, certs }: Props) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {locale === "en" ? (cert.dateEn ?? cert.date) : cert.date}
+              {getCertDate(locale, cert)}
             </span>
 
             {/* Japanese name */}
