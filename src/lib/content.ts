@@ -119,7 +119,7 @@ export type SiteContent = {
 
   // Contact / Footer
   sectionContactHeading: string;
-  copyrightText: string; // "© 2026 ふみ / 阮念文"（3 言語共通）
+  copyrightText: string; // ja/zh-TW: "© 2026 ふみ / 阮念文" / en: "© 2026 Fumi / Nien-wen Juan" (FP-015)
 };
 
 // ============================================================
@@ -455,13 +455,13 @@ export const CONTENT = {
     // ---- Hero ----
     namePrimary: "Fumi",
     namePrimaryLang: "en",
-    nameSecondary: "阮念文",          // aria-hidden, kanji name
+    nameSecondary: "Nien-wen Juan",   // aria-hidden, romanized name (FP-015 / 2026-06-09)
     romaji: "Fumi — IT Support & Infrastructure Engineer",
     subRole: "Independent SaaS Developer",
     tagline: "Turning frontline voices into reliable systems.",
     ctaPrimary: "See projects",
     ctaSecondary: "Get in touch →",
-    portraitAlt: "Portrait of Fumi (阮念文)",
+    portraitAlt: "Portrait of Fumi (Nien-wen Juan)",
 
     // ---- About ----
     sectionAboutHeading: "About",
@@ -563,7 +563,7 @@ export const CONTENT = {
 
     // ---- Contact ----
     sectionContactHeading: "Contact",
-    copyrightText: "© 2026 ふみ / 阮念文",  // 制約 5: 3 言語共通テキスト
+    copyrightText: "© 2026 Fumi / Nien-wen Juan",  // FP-015: en 専用化 (英語ロケール訪問者の可読性 / D325 整合)
   } satisfies SiteContent,
 } as const satisfies Record<Locale, SiteContent>;
 
