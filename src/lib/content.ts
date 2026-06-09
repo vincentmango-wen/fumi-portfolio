@@ -46,9 +46,7 @@ export type ProjectCard = {
 // ============================================================
 
 /**
- * 各言語オプション。
- * 旧: langSwitchLabel / langSwitchLabelShort / langSwitchAriaLabel / langSwitchHref
- * 新: languages[].* に置き換え。配列にすることで 4 言語以上も同じ型で対応。
+ * 各言語オプション。配列にすることで 4 言語以上も同じ型で対応。
  */
 export type LangOption = {
   /** URL 上のロケール文字列 */
@@ -70,23 +68,6 @@ export type LangOption = {
 export type SiteContent = {
   // Header
   logoLabel: string;
-
-  /**
-   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
-   */
-  langSwitchLabel?: string;        // desktop
-  /**
-   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
-   */
-  langSwitchLabelShort?: string;   // mobile (JA / ZH)
-  /**
-   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
-   */
-  langSwitchAriaLabel?: string;
-  /**
-   * @deprecated FP-009: languages[] に移行済み。移行期は残す。
-   */
-  langSwitchHref?: string;
 
   /**
    * 全言語オプションの一覧（LangSwitcher 用）。現在表示中の言語も含む。
@@ -138,7 +119,7 @@ export type SiteContent = {
 
   // Contact / Footer
   sectionContactHeading: string;
-  copyrightText: string; // "© 2026 ふみ / 阮念文"（3 言語共通）
+  copyrightText: string; // ja/zh-TW: "© 2026 ふみ / 阮念文" / en: "© 2026 Fumi / Nien-wen Juan" (FP-015)
 };
 
 // ============================================================
@@ -229,12 +210,6 @@ export const CONTENT = {
   ja: {
     // ---- Header ----
     logoLabel: "ふみ",
-    // @deprecated フィールド（移行期 / LangSwitcher は languages[] を使用）
-    langSwitchLabel: "繁體中文",
-    langSwitchLabelShort: "ZH",
-    langSwitchAriaLabel: "繁體中文に切り替え",
-    langSwitchHref: "/zh-TW",
-    // FP-009 新フィールド
     langOptions: LANG_OPTIONS,
     langSwitcherNavLabel: "言語切替",
 
@@ -354,12 +329,6 @@ export const CONTENT = {
   "zh-TW": {
     // ---- Header ----
     logoLabel: "ふみ",
-    // @deprecated フィールド（移行期 / LangSwitcher は languages[] を使用）
-    langSwitchLabel: "日本語",
-    langSwitchLabelShort: "JA",
-    langSwitchAriaLabel: "切換至日文",
-    langSwitchHref: "/ja",
-    // FP-009 新フィールド
     langOptions: LANG_OPTIONS,
     langSwitcherNavLabel: "語言切換",
 
@@ -486,13 +455,13 @@ export const CONTENT = {
     // ---- Hero ----
     namePrimary: "Fumi",
     namePrimaryLang: "en",
-    nameSecondary: "阮念文",          // aria-hidden, kanji name
+    nameSecondary: "Nien-wen Juan",   // aria-hidden, romanized name (FP-015 / 2026-06-09)
     romaji: "Fumi — IT Support & Infrastructure Engineer",
     subRole: "Independent SaaS Developer",
     tagline: "Turning frontline voices into reliable systems.",
     ctaPrimary: "See projects",
     ctaSecondary: "Get in touch →",
-    portraitAlt: "Portrait of Fumi (阮念文)",
+    portraitAlt: "Portrait of Fumi (Nien-wen Juan)",
 
     // ---- About ----
     sectionAboutHeading: "About",
@@ -594,7 +563,7 @@ export const CONTENT = {
 
     // ---- Contact ----
     sectionContactHeading: "Contact",
-    copyrightText: "© 2026 ふみ / 阮念文",  // 制約 5: 3 言語共通テキスト
+    copyrightText: "© 2026 Fumi / Nien-wen Juan",  // FP-015: en 専用化 (英語ロケール訪問者の可読性 / D325 整合)
   } satisfies SiteContent,
 } as const satisfies Record<Locale, SiteContent>;
 
