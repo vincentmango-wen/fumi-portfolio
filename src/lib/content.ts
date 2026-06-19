@@ -287,8 +287,8 @@ export const CONTENT = {
           "AWS 資格学習で「次に何を覚えればいいか」が散らかる課題を、用語集・サービス比較・模擬問題・構成図を 1 つのロードマップに束ねて解消する学習サイト。",
         deliveryLanguages: ["日本語"],
         stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
-        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
-        imageAlt: "AWS資格ロードマップラボのOGP画像。ロードマップ・用語集・サービス比較などの学習動線を示す",
+        imageUrl: "/projects/aws-cert-roadmap-lab.png",
+        imageAlt: "AWS資格ロードマップラボのトップ画面。複数の AWS 資格カード、ロードマップ、サービス比較や記事一覧などの学習動線が並ぶ",
         url: "https://www.aws-cert-roadmap-lab.com",
       },
       {
@@ -420,8 +420,8 @@ export const CONTENT = {
           "AWS 認證學習中「下一步該記什麼」總是雜亂——將術語集、服務比較、模擬考題、構成圖整合成單一路線圖的學習網站。",
         deliveryLanguages: ["日文"],
         stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
-        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
-        imageAlt: "AWS資格ロードマップラボ 的 OGP 圖像，呈現路線圖、術語集、服務比較等學習動線",
+        imageUrl: "/projects/aws-cert-roadmap-lab.png",
+        imageAlt: "AWS資格ロードマップラボ 首頁畫面。多張 AWS 認證卡片、路線圖、服務比較與文章列表等學習動線並列呈現",
         url: "https://www.aws-cert-roadmap-lab.com",
       },
       {
@@ -554,8 +554,8 @@ export const CONTENT = {
           "A study site that ties glossary, service comparisons, mock questions, and architecture diagrams into a single roadmap, so AWS certification learners stop losing track of what to memorize next.",
         deliveryLanguages: ["Japanese"],
         stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
-        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
-        imageAlt: "OGP image of AWS Cert Roadmap Lab showing the learning roadmap with glossary, service comparison, and mock exam entry points",
+        imageUrl: "/projects/aws-cert-roadmap-lab.png",
+        imageAlt: "Homepage of AWS Cert Roadmap Lab, showing multiple AWS certification cards, the roadmap, service comparisons, and article listings side by side",
         url: "https://www.aws-cert-roadmap-lab.com",
       },
       {
