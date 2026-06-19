@@ -194,7 +194,7 @@ export function ProjectsSection({ locale, content }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.name} — ${content.projectCtaLabel}`}
-                    className="mt-5 inline-block underline-offset-4 hover:underline focus-visible:underline transition-opacity"
+                    className="mt-5 inline-block underline-offset-4 hover:underline focus-visible:underline"
                     style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: "var(--text-sm)",
