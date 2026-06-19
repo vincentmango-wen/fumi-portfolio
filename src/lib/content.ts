@@ -39,6 +39,7 @@ export type ProjectCard = {
   stack: string[];
   imageUrl?: string;       // public/ 以下のパス。未指定なら「準備中」プレースホルダ
   imageAlt?: string;       // imageUrl 指定時に必須（locale ごとに記述）
+  url?: string;            // 外部公開 URL（FP-016: CTA リンク用）
 };
 
 // ============================================================
@@ -112,6 +113,7 @@ export type SiteContent = {
   projects: ProjectCard[];
   projectPlaceholderLabel: string; // "準備中 / 準備中"
   projectDeliveryLanguagesLabel: string; // Projects カードの配信言語タグ aria-label（locale 連動）
+  projectCtaLabel: string; // 外部リンク CTA 文言（FP-016: "サイトを見る →" 等）
 
   // Philosophy
   sectionPhilosophyHeading: string; // aria 用（非表示）
@@ -277,6 +279,19 @@ export const CONTENT = {
     sectionProjectsHeading: "Projects / 作品集",
     projects: [
       {
+        name: "AWS資格ロードマップラボ",
+        status: "running" as const,
+        statusIcon: "●" as const,
+        statusLabel: "Running",
+        description:
+          "AWS 資格学習で「次に何を覚えればいいか」が散らかる課題を、用語集・サービス比較・模擬問題・構成図を 1 つのロードマップに束ねて解消する学習サイト。",
+        deliveryLanguages: ["日本語"],
+        stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
+        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
+        imageAlt: "AWS資格ロードマップラボのOGP画像。ロードマップ・用語集・サービス比較などの学習動線を示す",
+        url: "https://www.aws-cert-roadmap-lab.com",
+      },
+      {
         name: "secretary-bot",
         status: "running" as const,
         statusIcon: "●" as const,
@@ -315,6 +330,7 @@ export const CONTENT = {
     ],
     projectPlaceholderLabel: "準備中",
     projectDeliveryLanguagesLabel: "配信言語",
+    projectCtaLabel: "サイトを見る →",
 
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT & AI Philosophy",
@@ -396,6 +412,19 @@ export const CONTENT = {
     sectionProjectsHeading: "作品集 / Projects",
     projects: [
       {
+        name: "AWS資格ロードマップラボ",
+        status: "running" as const,
+        statusIcon: "●" as const,
+        statusLabel: "Running",
+        description:
+          "AWS 認證學習中「下一步該記什麼」總是雜亂——將術語集、服務比較、模擬考題、構成圖整合成單一路線圖的學習網站。",
+        deliveryLanguages: ["日文"],
+        stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
+        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
+        imageAlt: "AWS資格ロードマップラボ 的 OGP 圖像，呈現路線圖、術語集、服務比較等學習動線",
+        url: "https://www.aws-cert-roadmap-lab.com",
+      },
+      {
         name: "secretary-bot",
         status: "running" as const,
         statusIcon: "●" as const,
@@ -434,6 +463,7 @@ export const CONTENT = {
     ],
     projectPlaceholderLabel: "準備中",
     projectDeliveryLanguagesLabel: "提供語言",
+    projectCtaLabel: "前往網站 →",
 
     // ---- Philosophy ----
     sectionPhilosophyHeading: "IT 與 AI 的思考方式",
@@ -516,6 +546,19 @@ export const CONTENT = {
     sectionProjectsHeading: "Projects",
     projects: [
       {
+        name: "AWS Cert Roadmap Lab",
+        status: "running" as const,
+        statusIcon: "●" as const,
+        statusLabel: "Running",
+        description:
+          "A study site that ties glossary, service comparisons, mock questions, and architecture diagrams into a single roadmap, so AWS certification learners stop losing track of what to memorize next.",
+        deliveryLanguages: ["Japanese"],
+        stack: ["Next.js", "TypeScript", "Python", "AWS Lambda"],
+        imageUrl: "/projects/aws-cert-roadmap-lab-og.png",
+        imageAlt: "OGP image of AWS Cert Roadmap Lab showing the learning roadmap with glossary, service comparison, and mock exam entry points",
+        url: "https://www.aws-cert-roadmap-lab.com",
+      },
+      {
         name: "secretary-bot",
         status: "running" as const,
         statusIcon: "●" as const,
@@ -554,6 +597,7 @@ export const CONTENT = {
     ],
     projectPlaceholderLabel: "Coming soon",
     projectDeliveryLanguagesLabel: "Delivery languages",
+    projectCtaLabel: "Visit site →",
 
     // ---- Philosophy ----
     // 制約 2: 国・国籍・台湾人としての言及なし。普遍的な価値観として記述。
