@@ -9,6 +9,7 @@ type Props = {
     | "projects"
     | "projectPlaceholderLabel"
     | "projectDeliveryLanguagesLabel"
+    | "projectCtaLabel"
   >;
 };
 
@@ -186,6 +187,25 @@ export function ProjectsSection({ locale, content }: Props) {
                     </li>
                   ))}
                 </ul>
+
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.name} — ${content.projectCtaLabel}`}
+                    className="mt-5 inline-block underline-offset-4 hover:underline focus-visible:underline"
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "var(--text-sm)",
+                      lineHeight: 1.4,
+                      color: "var(--color-accent)",
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    {content.projectCtaLabel}
+                  </a>
+                )}
               </div>
 
               {/* Status badge */}
