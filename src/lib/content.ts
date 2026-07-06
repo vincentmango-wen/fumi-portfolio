@@ -167,11 +167,18 @@ const CERTS: CertEntry[] = [
     obtained: true,
   },
   {
+    date: "2026.06",
+    nameJa: "AWS CLF-C02",
+    nameZh: "AWS CLF-C02",
+    nameEn: "AWS Certified Cloud Practitioner (CLF-C02)",
+    obtained: true,
+  },
+  {
     date: "2026年内",
     dateEn: "Scheduled in 2026",   // 制約 1: 月を明示しない曖昧表現
-    nameJa: "AWS CLF / SAA",
-    nameZh: "AWS CLF / SAA",
-    nameEn: "AWS CLF / SAA",
+    nameJa: "AWS AIF-C01",
+    nameZh: "AWS AIF-C01",
+    nameEn: "AWS AIF-C01",
     obtained: false,
   },
 ];
