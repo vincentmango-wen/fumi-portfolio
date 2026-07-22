@@ -174,12 +174,11 @@ const CERTS: CertEntry[] = [
     obtained: true,
   },
   {
-    date: "2026年内",
-    dateEn: "Scheduled in 2026",   // 制約 1: 月を明示しない曖昧表現
+    date: "2026.07",
     nameJa: "AWS AIF-C01",
     nameZh: "AWS AIF-C01",
-    nameEn: "AWS AIF-C01",
-    obtained: false,
+    nameEn: "AWS Certified AI Practitioner (AIF-C01)",
+    obtained: true,
   },
 ];
 
