@@ -180,6 +180,13 @@ const CERTS: CertEntry[] = [
     nameEn: "AWS Certified AI Practitioner (AIF-C01)",
     obtained: true,
   },
+  {
+    date: "2026.10",
+    nameJa: "AWS SAA-C03",
+    nameZh: "AWS SAA-C03",
+    nameEn: "AWS Certified Solutions Architect - Associate (SAA-C03)",
+    obtained: true,
+  },
 ];
 
 // ============================================================
